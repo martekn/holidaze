@@ -59,7 +59,7 @@
     --secondary-foreground: var(--foreground);
 
     --muted: var(--neutral-200);
-    --muted-foreground: var(--foreground);
+    --muted-foreground: var(--neutral-500);
 
     --accent: var(--accent-400);
     --accent-foreground: var(--foreground);
@@ -84,5 +84,9 @@
 
   body {
     @apply bg-background font-base font-normal text-foreground;
+  }
+
+  svg {
+    stroke-width: 1.5;
   }
 }
