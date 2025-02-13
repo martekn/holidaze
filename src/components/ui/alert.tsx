@@ -34,7 +34,7 @@ const alertVariants = cva(
   }
 );
 
-interface AlertProps
+export interface AlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertVariants> {
   title: string;

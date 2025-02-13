@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { montserrat, roboto } from "./fonts";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Holidaze",
@@ -14,7 +15,10 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} ${roboto.variable} antialiased`}>{children}</body>
+      <body className={`${montserrat.variable} ${roboto.variable} dark antialiased`}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 };
