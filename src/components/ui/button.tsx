@@ -17,12 +17,14 @@ const buttonVariants = cva(
         "ghost-inverted": "text-neutral-100 hover:bg-neutral-600",
         link: "text-foreground font-semibold font-base underline-offset-2 hover:underline hover:text-neutral-800",
         "link-inverted":
-          "text-neutral-200 font-semibold font-base underline-offset-2 hover:text-neutral-100 hover:underline"
+          "text-neutral-200 font-semibold font-base underline-offset-2 hover:text-neutral-100 hover:underline",
+        plain: "font-base border-0"
       },
       size: {
         default: "h-40 px-32 py-12",
         sm: "h-32 px-12 text-sm",
-        icon: "h-40 w-40"
+        icon: "h-40 w-40",
+        none: ""
       }
     },
     defaultVariants: {
