@@ -1,10 +1,10 @@
 import * as React from "react";
 import NextLink, { type LinkProps } from "next/link";
-import { buttonVariants, type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ButtonStyleProps, buttonStyles } from "@/lib/styles";
 
 type ButtonLinkProps = LinkProps &
-  Pick<ButtonProps, "variant" | "size"> & {
+  ButtonStyleProps & {
     className?: string;
     children: React.ReactNode;
   };
@@ -12,7 +12,7 @@ type ButtonLinkProps = LinkProps &
 const Link = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   ({ className, variant, size, children, ...props }, ref) => {
     return (
-      <NextLink className={cn(buttonVariants({ variant, size }), className)} ref={ref} {...props}>
+      <NextLink className={cn(buttonStyles({ variant, size }), className)} ref={ref} {...props}>
         {children}
       </NextLink>
     );

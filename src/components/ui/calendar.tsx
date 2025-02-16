@@ -6,7 +6,7 @@
 
 "use client";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { differenceInCalendarDays } from "date-fns";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
@@ -18,6 +18,7 @@ import {
   useDayPicker,
   type DayPickerProps
 } from "react-day-picker";
+import { buttonStyles } from "@/lib/styles";
 
 export type CalendarProps = DayPickerProps & {
   /**
@@ -106,7 +107,7 @@ function Calendar({
     props.captionClassName
   );
   const _captionLabelClassName = cn("truncate text-sm font-medium", props.captionLabelClassName);
-  const buttonNavClassName = buttonVariants({
+  const buttonNavClassName = buttonStyles({
     variant: "outline",
     className: "absolute h-32 w-32 bg-transparent p-0 opacity-50 hover:opacity-100"
   });
@@ -120,7 +121,7 @@ function Calendar({
     props.dayClassName
   );
   const _dayButtonClassName = cn(
-    buttonVariants({ variant: "ghost" }),
+    buttonStyles({ variant: "ghost" }),
     "size-32 rounded-md p-0 font-normal transition-none aria-selected:opacity-100",
     props.dayButtonClassName
   );
