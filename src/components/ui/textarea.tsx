@@ -1,15 +1,17 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { inputStyles, InputStylesProps } from "@/lib/styles";
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentProps<"textarea">>(
-  ({ className, ...props }, ref) => {
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  borderStyle?: InputStylesProps["borderStyle"];
+}
+
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ borderStyle, className, ...props }, ref) => {
     return (
       <textarea
-        className={cn(
-          "flex min-h-[80px] w-full rounded-lg border border-input bg-background px-12 py-12 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:border-neutral-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          className
-        )}
+        className={cn(inputStyles({ borderStyle }), "min-h-[80px]", className)}
         ref={ref}
         {...props}
       />

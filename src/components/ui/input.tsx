@@ -1,22 +1,39 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { inputIconStyles, inputStyles, InputStylesProps, inputWrapperStyles } from "@/lib/styles";
+import { TablerIcon } from "@tabler/icons-react";
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
-    return (
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  icon?: TablerIcon;
+  borderStyle?: InputStylesProps["borderStyle"];
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ icon: Icon, className, borderStyle, type, ...props }, ref) => {
+    const layout = Icon ? "withIcon" : "default";
+
+    const input = (
       <input
         type={type}
-        className={cn(
-          "flex w-full rounded-lg border border-input bg-background px-12 py-12 text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-neutral-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
-          className
-        )}
+        className={cn("pl-48", inputStyles({ layout, borderStyle }), className)}
         ref={ref}
         {...props}
       />
     );
+
+    if (Icon) {
+      return (
+        <div className={inputWrapperStyles}>
+          <Icon className={inputIconStyles} />
+          {input}
+        </div>
+      );
+    }
+    return input;
   }
 );
+
 Input.displayName = "Input";
 
 export { Input };
