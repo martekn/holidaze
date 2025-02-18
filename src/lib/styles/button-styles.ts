@@ -11,16 +11,14 @@ export const buttonStyles = cva(
           "border border-border bg-background hover:border-ring active:bg-neutral-200 focus-visible:border-ring disabled:bg-neutral-200",
         ghost: "hover:bg-neutral-200",
         ghostInverted: "text-neutral-100 hover:bg-neutral-600",
-        link: "text-foreground font-semibold font-base underline-offset-2 hover:underline hover:text-neutral-800",
+        link: "text-foreground font-semibold font-base underline-offset-2 hover:underline hover:text-neutral-800 ",
         linkInverted:
-          "text-neutral-200 font-semibold font-base underline-offset-2 hover:text-neutral-100 hover:underline",
-        plain: "font-base border-0"
+          "text-neutral-200 font-semibold font-base underline-offset-2 hover:text-neutral-100 hover:underline"
       },
       size: {
         default: "h-40 px-32 py-12",
         sm: "h-32 px-12 text-sm",
-        icon: "h-40 w-40",
-        none: ""
+        icon: "h-40 w-40"
       }
     },
     defaultVariants: {
