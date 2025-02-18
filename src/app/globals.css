@@ -85,8 +85,4 @@
   body {
     @apply bg-background font-base font-normal text-foreground;
   }
-
-  svg {
-    stroke-width: 1.5;
-  }
 }
