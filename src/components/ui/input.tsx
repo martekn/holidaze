@@ -7,10 +7,11 @@ import { TablerIcon } from "@tabler/icons-react";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: TablerIcon;
   borderStyle?: InputStylesProps["borderStyle"];
+  _floatingLabelMode?: boolean; // This is to be used in the floating label component to allow sibling styling
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ icon: Icon, className, borderStyle, type, ...props }, ref) => {
+  ({ icon: Icon, className, borderStyle, type, _floatingLabelMode, ...props }, ref) => {
     const layout = Icon ? "withIcon" : "default";
 
     const input = (
@@ -22,7 +23,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       />
     );
 
-    if (Icon) {
+    if (Icon && _floatingLabelMode) {
+      return (
+        <>
+          <Icon className={inputIconStyles} />
+          {input}
+        </>
+      );
+    } else if (Icon) {
       return (
         <div className={inputWrapperStyles}>
           <Icon className={inputIconStyles} />
