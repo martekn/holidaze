@@ -2,12 +2,10 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { inputGroupStyles } from "@/lib/styles";
 
-interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
-  ({ className, children, ...props }) => {
+export const InputGroup = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, children, ...props }, ref) => {
     return (
-      <div className={cn(inputGroupStyles, className)} {...props}>
+      <div className={cn(inputGroupStyles, className)} {...props} ref={ref}>
         {children}
       </div>
     );
