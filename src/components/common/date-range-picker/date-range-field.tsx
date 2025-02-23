@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { DateRange } from "react-day-picker";
 
 type DateRangeFieldProps = {
-  date: DateRange | undefined;
+  date: DateRange | undefined | null;
   borderStyle?: InputStylesProps["borderStyle"];
   placeholder?: string;
   isFloating?: boolean;

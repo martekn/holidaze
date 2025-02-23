@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { DateRange } from "react-day-picker";
 
 type DateRangeLabelProps = {
-  date: DateRange | undefined;
+  date: DateRange | undefined | null;
   children: React.ReactNode;
   isOpen: boolean;
   isFloating?: boolean;

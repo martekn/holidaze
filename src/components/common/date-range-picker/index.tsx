@@ -7,7 +7,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { floatingWrapperStyles, inputGroupStyles, InputStylesProps } from "@/lib/styles";
+import { floatingWrapperStyles, formItemVariants, InputStylesProps } from "@/lib/styles";
 import { DateRangeField } from "./date-range-field";
 import { DateRangeLabel } from "./date-range-label";
 import { useState } from "react";
@@ -18,7 +18,7 @@ interface RangeDatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   isFloating?: boolean;
   placeholder?: string;
   bookedDates?: DateRange[];
-  value?: DateRange;
+  value?: DateRange | undefined | null;
   onChange?: (value: DateRange | undefined) => void;
 }
 
@@ -47,7 +47,7 @@ export function DateRangePicker({
               "justify-start bg-background text-left font-normal focus-visible:outline-none"
             )}
           >
-            <span className={cn(inputGroupStyles, "relative")}>
+            <span className={cn(formItemVariants(), "relative")}>
               {label && (
                 <DateRangeLabel isFloating={isFloating} date={value} isOpen={open}>
                   {label}
@@ -66,7 +66,7 @@ export function DateRangePicker({
           <Calendar
             mode="range"
             defaultMonth={value?.from}
-            selected={value}
+            selected={value === null ? undefined : value}
             onSelect={onChange}
             numberOfMonths={matches ? 2 : 1}
             showOutsideDays={false}
