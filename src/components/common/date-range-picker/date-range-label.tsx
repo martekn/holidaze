@@ -10,7 +10,6 @@ type DateRangeLabelProps = {
 };
 
 const DateRangeLabel = ({ isFloating = false, date, isOpen, children }: DateRangeLabelProps) => {
-  console.log(isOpen && "!group-focus-visible:text-primary-400");
   if (isFloating) {
     return (
       <span
