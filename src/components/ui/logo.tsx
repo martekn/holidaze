@@ -14,6 +14,7 @@ const Logo = ({ variant = "light" }: LogoProps) => {
         height={25}
         priority
         unoptimized
+        className="h-auto"
       />
     </Link>
   );
