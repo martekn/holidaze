@@ -11,7 +11,6 @@ import { FieldError } from "react-hook-form";
 interface FloatingLabelInputProps
   extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   label: string;
-  value: string;
   id: string;
   error?: FieldError;
   borderStyle?: InputStylesProps["borderStyle"];
@@ -23,50 +22,45 @@ interface FloatingLabelInputProps
 const FloatingLabelInput = React.forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
   FloatingLabelInputProps
->(
-  (
-    { id, label, value, error, borderStyle = "default", type = "text", icon: Icon, ...props },
-    ref
-  ) => {
-    const isTextarea = type === "textarea";
+>(({ id, label, error, borderStyle = "default", type = "text", icon: Icon, ...props }, ref) => {
+  const isTextarea = type === "textarea";
 
-    return (
-      <div className={floatingWrapperStyles}>
-        {isTextarea ? (
-          <Textarea
-            id={id}
-            className={floatingInputStyles}
-            borderStyle={borderStyle}
-            ref={ref as React.Ref<HTMLTextAreaElement>}
-            {...props}
-          />
-        ) : (
-          <Input
-            icon={Icon}
-            id={id}
-            className={floatingInputStyles}
-            _floatingLabelMode
-            borderStyle={borderStyle}
-            ref={ref as React.Ref<HTMLInputElement>}
-            {...props}
-          />
+  return (
+    <div className={floatingWrapperStyles}>
+      {isTextarea ? (
+        <Textarea
+          id={id}
+          className={floatingInputStyles}
+          borderStyle={borderStyle}
+          ref={ref as React.Ref<HTMLTextAreaElement>}
+          {...props}
+        />
+      ) : (
+        <Input
+          icon={Icon}
+          id={id}
+          className={floatingInputStyles}
+          _floatingLabelMode
+          borderStyle={borderStyle}
+          ref={ref as React.Ref<HTMLInputElement>}
+          {...props}
+        />
+      )}
+      <Label
+        htmlFor={id}
+        className={cn(
+          floatingLabelStyles({
+            variant: Icon && !isTextarea ? "withIcon" : "default",
+            layout: isTextarea ? "top" : "centered",
+            state: props.value?.toString() ? "floating" : "default"
+          })
         )}
-        <Label
-          htmlFor={id}
-          className={cn(
-            floatingLabelStyles({
-              variant: Icon && !isTextarea ? "withIcon" : "default",
-              layout: isTextarea ? "top" : "centered",
-              state: value ? "floating" : "default"
-            })
-          )}
-        >
-          {label}
-        </Label>
-      </div>
-    );
-  }
-);
+      >
+        {label}
+      </Label>
+    </div>
+  );
+});
 
 FloatingLabelInput.displayName = "FloatingLabelInput";
 export { FloatingLabelInput };

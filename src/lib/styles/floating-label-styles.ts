@@ -1,6 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
 
-export const floatingWrapperStyles = "relative group";
+export const floatingWrapperStyles = "relative group w-full";
 
 export const floatingInputStyles =
   "peer placeholder:text-transparent focus-within:placeholder:text-muted-foreground";
