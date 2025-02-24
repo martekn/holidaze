@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Pagination,
   PaginationContent,
@@ -8,7 +10,8 @@ import {
   PaginationPrevious
 } from "@/components/ui/pagination";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
 
 type PaginatorProps = {
   currentPage: number;
@@ -52,6 +55,12 @@ const Paginator = ({ currentPage, totalPages }: PaginatorProps) => {
 
   const path = usePathname();
   const searchParams = useSearchParams();
+  const [isMounted, setIsMounted] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 40em");
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const createUrl = useCallback(
     (page: number) => {
@@ -83,6 +92,14 @@ const Paginator = ({ currentPage, totalPages }: PaginatorProps) => {
     </>
   );
 
+  const smallDisplay = (
+    <PaginationItem>
+      <div className="text-center">
+        Page {currentPage} of {totalPages}
+      </div>
+    </PaginationItem>
+  );
+
   return (
     <Pagination>
       <PaginationContent>
@@ -92,8 +109,7 @@ const Paginator = ({ currentPage, totalPages }: PaginatorProps) => {
           </PaginationItem>
         )}
 
-        {pageItems}
-
+        {isMobile && isMounted ? smallDisplay : pageItems}
         {!isLastPage && (
           <PaginationItem>
             <PaginationNext href={createUrl(nextPage)} />
