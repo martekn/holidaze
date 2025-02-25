@@ -8,7 +8,7 @@ export const buttonStyles = cva(
         default:
           "bg-primary text-primary-foreground hover:bg-primary-300 active:bg-primary-500 focus-visible:bg-primary-300",
         outline:
-          "border border-border bg-background hover:border-ring active:bg-neutral-200 focus-visible:border-ring disabled:bg-neutral-200",
+          "border border-border hover:bg-neutral-200 bg-background active:bg-neutral-200 focus-visible:border-ring disabled:bg-neutral-200",
         ghost: "hover:bg-neutral-200",
         ghostInverted: "text-neutral-100 hover:bg-neutral-600",
         link: "text-foreground font-semibold font-base underline-offset-2 hover:underline hover:text-neutral-800 ",
