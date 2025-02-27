@@ -57,7 +57,7 @@ const Rating = ({
 
   return (
     <div className={cn(ratingStyles({ variant, textPosition }), className)}>
-      <div className={cn("rounded-md bg-accent-400 px-8 py-2", ratingClassName)}>{rating}</div>
+      <div className={cn("rounded-md bg-accent-400 px-8", ratingClassName)}>{rating}</div>
       {variant !== "ratingOnly" && (
         <div className={cn(textClassName)}>{currentRating?.text ?? ""}</div>
       )}
