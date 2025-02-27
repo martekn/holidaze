@@ -16,7 +16,7 @@ export const buttonStyles = cva(
           "text-neutral-200 font-semibold font-base underline-offset-2 hover:text-neutral-100 hover:underline"
       },
       size: {
-        default: "h-40 px-32 py-12",
+        default: "h-40 px-20 py-12",
         sm: "h-32 px-12 text-sm",
         icon: "h-40 w-40"
       }
