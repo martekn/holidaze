@@ -117,6 +117,6 @@ const config: Config = {
       full: "50%"
     }
   },
-  plugins: [tailwindcssAnimate]
+  plugins: [tailwindcssAnimate, require("@tailwindcss/container-queries")]
 };
 export default config;
