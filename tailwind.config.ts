@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import containerQueries from "@tailwindcss/container-queries";
 
 const config: Config = {
   darkMode: ["class"],
@@ -29,6 +30,7 @@ const config: Config = {
       semibold: "600"
     },
     spacing: {
+      px: "1px",
       "0": "0px",
       "2": "0.125rem",
       "4": "0.25rem",
@@ -117,6 +119,6 @@ const config: Config = {
       full: "50%"
     }
   },
-  plugins: [tailwindcssAnimate, require("@tailwindcss/container-queries")]
+  plugins: [tailwindcssAnimate, containerQueries]
 };
 export default config;
