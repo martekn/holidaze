@@ -1,8 +1,9 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-type LogoProps = { variant?: "light" | "dark" };
+type LogoProps = { variant?: "light" | "dark"; logoClassName?: string };
 
-const Logo = ({ variant = "light" }: LogoProps) => {
+const Logo = ({ variant = "light", logoClassName }: LogoProps) => {
   const isDark = variant === "dark";
 
   return (
@@ -14,7 +15,7 @@ const Logo = ({ variant = "light" }: LogoProps) => {
         height={25}
         priority
         unoptimized
-        className="h-auto"
+        className={cn("h-auto", logoClassName)}
       />
     </Link>
   );
