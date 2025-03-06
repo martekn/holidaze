@@ -18,7 +18,8 @@ export const buttonStyles = cva(
       size: {
         default: "h-40 px-20 py-12",
         sm: "h-32 px-12 text-sm",
-        icon: "h-40 w-40"
+        icon: "h-40 w-40",
+        custom: ""
       }
     },
     defaultVariants: {
