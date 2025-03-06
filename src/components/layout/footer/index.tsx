@@ -17,7 +17,7 @@ const Footer = () => {
       <Container className="mx-auto flex max-w-screen-xl flex-col gap-40 py-64 md:py-96 lg:flex-row lg:gap-128">
         <div className="max-w-prose space-y-12">
           <h2>
-            <Logo variant="dark" logoClassName="w-[6.5rem] py-4" />
+            <Logo variant="dark" className="max-w-[6.5rem]" />
           </h2>
           <p className="leading-7">
             {`At Holidaze, we’re passionate about helping you find the perfect stay for every
