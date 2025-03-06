@@ -10,7 +10,7 @@ const Logo = ({ variant = "light", className }: LogoProps) => {
     <Link
       href="/"
       className={cn(
-        "inline-block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "-m-4 inline-block rounded-md p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         isDark && "focus-visible:ring-neutral-200",
         className
       )}
