@@ -1,12 +1,14 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import containerQueries from "@tailwindcss/container-queries";
 
 const config: Config = {
   darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/lib/styles/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     fontFamily: {
@@ -28,12 +30,14 @@ const config: Config = {
       semibold: "600"
     },
     spacing: {
+      px: "1px",
       "0": "0px",
       "2": "0.125rem",
       "4": "0.25rem",
       "8": "0.5rem",
       "12": "0.75rem",
       "16": "1rem",
+      "20": "1.25rem",
       "24": "1.5rem",
       "32": "2rem",
       "40": "2.5rem",
@@ -111,9 +115,10 @@ const config: Config = {
     borderRadius: {
       lg: "var(--radius)",
       md: "calc(var(--radius) - 2px)",
-      sm: "calc(var(--radius) - 4px)"
+      sm: "calc(var(--radius) - 4px)",
+      full: "50%"
     }
   },
-  plugins: [tailwindcssAnimate]
+  plugins: [tailwindcssAnimate, containerQueries]
 };
 export default config;
