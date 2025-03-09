@@ -47,7 +47,7 @@ export function DateRangePicker({
               "justify-start bg-background text-left font-normal focus-visible:outline-none"
             )}
           >
-            <span className={cn(formItemVariants(), "relative")}>
+            <span className={cn(formItemVariants(), "relative", isFloating && "space-y-0")}>
               {label && (
                 <DateRangeLabel isFloating={isFloating} date={value} isOpen={open}>
                   {label}
