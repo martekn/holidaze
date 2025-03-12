@@ -31,3 +31,7 @@ export const bookingWithListingSchema = baseBookingSchema.extend({
   venue: baseListingSchema
 });
 export type TBookingWithListing = z.infer<typeof bookingWithListingSchema>;
+
+// User with venue manager state
+export const userWithVenueManagerSchema = baseUserSchema.extend({ venueManager: z.boolean() });
+export type TUserWithVenueManager = z.infer<typeof userWithVenueManagerSchema>;
