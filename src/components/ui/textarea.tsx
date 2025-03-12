@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { inputStyles, InputStylesProps } from "@/lib/styles";
 
 interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

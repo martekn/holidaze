@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { IconCircle, IconChevronRight, IconCheck } from "@tabler/icons-react";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
@@ -155,7 +155,7 @@ const DropdownMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn("h-px -mx-8 my-8 bg-muted", className)}
+    className={cn("-mx-8 my-8 h-px bg-muted", className)}
     {...props}
   />
 ));

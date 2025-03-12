@@ -1,5 +1,5 @@
 import { Card, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { TablerIcon } from "@tabler/icons-react";
 import React from "react";
 

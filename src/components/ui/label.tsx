@@ -4,7 +4,7 @@ import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { LabelStylesProps, labelStyles } from "@/lib/styles";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 
 type LabelProps = React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & LabelStylesProps;
 

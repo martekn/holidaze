@@ -12,7 +12,7 @@ import {
   useFormContext
 } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { Label } from "@/components/ui/label";
 import { formItemVariants, LabelStylesProps, FormItemStyleProps } from "@/lib/styles";
 import { ErrorMessage } from "./error-message";
