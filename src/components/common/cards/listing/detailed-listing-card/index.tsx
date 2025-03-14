@@ -7,7 +7,7 @@ import Price from "@/components/ui/price";
 import { cn } from "@/lib/utils/shadcn-utils";
 import { IconParking, IconPaw, IconSoup, IconWifi } from "@tabler/icons-react";
 import { TAmenity, TBaseListing } from "@/lib/schema";
-import { getFormattedAddress } from "@/lib/utils/getFormattedAddress";
+import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
 
 const AMENITIES = {
   parking: {
