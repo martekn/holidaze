@@ -165,7 +165,7 @@ export const apiFetch = async <TBody = unknown>(
     const data = await response.json();
 
     if (!response.ok) {
-      return { error: true, status: response.status, statusText: response.statusText, data };
+      return { error: true, data };
     }
 
     return data;

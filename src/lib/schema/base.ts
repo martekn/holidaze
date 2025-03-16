@@ -40,11 +40,34 @@ export const paginatedMetaSchema = z.object({
 });
 export type TPaginatedMeta = z.infer<typeof paginatedMetaSchema>;
 
+// Base structure of api responses
 export const baseApiResponseSchema = z.object({
   data: z.unknown(),
   meta: z.record(z.unknown()).or(z.object({}))
 });
+export type TBaseApiResponse = z.infer<typeof baseApiResponseSchema>;
 
+// Paginated api response
 export const paginatedApiResponseSchema = baseApiResponseSchema.extend({
   meta: paginatedMetaSchema
 });
+export type TPaginatedApiResponse = z.infer<typeof paginatedApiResponseSchema>;
+
+// Base error schema
+export const baseErrorSchema = z.object({
+  errors: z.array(
+    z.object({
+      message: z.string()
+    })
+  ),
+  status: z.string().optional(),
+  statusCode: z.number().optional()
+});
+export type TBaseError = z.infer<typeof baseErrorSchema>;
+
+// Api error response
+export const apiErrorResponseSchema = z.object({
+  error: z.boolean(),
+  data: baseErrorSchema
+});
+export type TApiErrorResponse = z.infer<typeof apiErrorResponseSchema>;
