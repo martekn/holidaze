@@ -1,5 +1,5 @@
 import { Heading } from "@/components/ui/heading";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import React from "react";
 
 type FooterListProps = { className: string; children: React.ReactNode; heading: string };

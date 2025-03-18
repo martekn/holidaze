@@ -1,7 +1,7 @@
 import { Card, CardTitle } from "@/components/ui/card";
 import { TBookingWithListing } from "@/lib/schema";
 import { headingStyles } from "@/lib/styles/heading-styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { differenceInCalendarDays, format, parseISO } from "date-fns";
 import Link from "next/link";
 import React from "react";

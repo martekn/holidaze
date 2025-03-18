@@ -1,5 +1,5 @@
 import { floatingLabelStyles, labelStyles } from "@/lib/styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { DateRange } from "react-day-picker";
 
 type DateRangeLabelProps = {

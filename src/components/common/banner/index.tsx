@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Heading, HeadingProps } from "@/components/ui/heading";
 import { sectionStyles, SectionStylesProps } from "@/lib/styles/section-styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import React from "react";
 
 type BannerProps = {

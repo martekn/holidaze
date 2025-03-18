@@ -4,7 +4,7 @@ import * as React from "react";
 import { DateRange } from "react-day-picker";
 import { useMediaQuery } from "usehooks-ts";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { floatingWrapperStyles, formItemVariants, InputStylesProps } from "@/lib/styles";

@@ -1,5 +1,5 @@
 import { labelStyles } from "@/lib/styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import React from "react";
 
 interface FieldsetProps extends React.FieldsetHTMLAttributes<HTMLFieldSetElement> {

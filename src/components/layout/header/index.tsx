@@ -4,15 +4,24 @@ import Container from "@/components/ui/container";
 import { Link } from "@/components/ui/link";
 import UserDropdown from "./user-dropdown";
 import SearchDialog from "./search-dialog";
+import { cn } from "@/lib/utils/shadcn-utils";
+import { getUserData } from "@/lib/cookies/server";
 
-const Header = ({ showSearch = true }) => {
-  // Temporary variable until authentication is added and the component is updated
-  // Will also need to update the dropdown avatar prop when auth is in place
-  const isAuthenticated = true;
+const Header = async ({ showSearch = true }) => {
+  // This has to be awaited regardless of what ts is saying
+  // There might be an issue with how the types have been setup
+  // Unsure of where the problem lies
+  const user = await getUserData();
+  const isAuthenticated = !!user;
 
   return (
     <header className="relative border-b border-neutral-200 py-16 max-lg:mb-40">
-      <Container className="grid min-h-40 grid-cols-2 flex-wrap items-center justify-between gap-16 lg:grid-cols-4">
+      <Container
+        className={cn(
+          "grid min-h-40 grid-cols-2 flex-wrap items-center justify-between gap-16",
+          showSearch ? "lg:grid-cols-4" : ""
+        )}
+      >
         <Logo className="w-[5rem] sm:w-[7rem]" />
         {showSearch && (
           <SearchDialog className="max-lg:absolute max-lg:inset-x-16 max-lg:top-full max-lg:-mt-4 lg:col-span-2 lg:w-[30rem] lg:justify-self-center" />
@@ -30,8 +39,10 @@ const Header = ({ showSearch = true }) => {
         )}
         {isAuthenticated && (
           <div className="justify-self-end">
-            {/* Avatar not added */}
-            <UserDropdown name="username" avatar={{ alt: "", url: "" }} />
+            <UserDropdown
+              name={user.name}
+              avatar={{ url: user.avatar.url, alt: user.avatar.alt }}
+            />
           </div>
         )}
       </Container>

@@ -5,7 +5,7 @@ import { Card, CardImage, CardTitle } from "@/components/ui/card";
 import Rating from "@/components/ui/rating";
 import Price from "@/components/ui/price";
 import { TBaseListing } from "@/lib/schema";
-import { getFormattedAddress } from "@/lib/utils";
+import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
 
 type ListingCardProps = {
   listing: TBaseListing;

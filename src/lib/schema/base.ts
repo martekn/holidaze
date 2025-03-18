@@ -40,11 +40,43 @@ export const paginatedMetaSchema = z.object({
 });
 export type TPaginatedMeta = z.infer<typeof paginatedMetaSchema>;
 
+// Base structure of api responses
 export const baseApiResponseSchema = z.object({
   data: z.unknown(),
   meta: z.record(z.unknown()).or(z.object({}))
 });
+export type TBaseApiResponse = z.infer<typeof baseApiResponseSchema>;
 
+// Paginated api response
 export const paginatedApiResponseSchema = baseApiResponseSchema.extend({
   meta: paginatedMetaSchema
 });
+export type TPaginatedApiResponse = z.infer<typeof paginatedApiResponseSchema>;
+
+// Base error schema
+export const baseErrorSchema = z.object({
+  errors: z.array(
+    z.object({
+      message: z.string()
+    })
+  ),
+  status: z.string().optional(),
+  statusCode: z.number().optional()
+});
+export type TBaseError = z.infer<typeof baseErrorSchema>;
+
+// Base registration schema
+export const baseUserRegistrationSchema = z.object({
+  name: z
+    .string({ required_error: "Username is required" })
+    .max(20, "Username cannot be longer than 20 characters"),
+  email: z
+    .string({
+      required_error: "Email is required"
+    })
+    .email()
+    .regex(/^[\w\-.]+@(stud\.)?noroff\.no$/, "Only stud.noroff.no emails are allowed to register")
+    .trim(),
+  password: z.string().min(8, "Password must be at least 8 characters long")
+});
+export type TBaseUserRegistration = z.infer<typeof baseUserRegistrationSchema>;

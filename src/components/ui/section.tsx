@@ -1,5 +1,5 @@
 import { sectionStyles, SectionStylesProps } from "@/lib/styles/section-styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { Slot } from "@radix-ui/react-slot";
 import React from "react";
 

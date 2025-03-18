@@ -4,7 +4,7 @@ import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 
 const Select = SelectPrimitive.Root;
 
@@ -127,7 +127,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn("h-px -mx-4 my-4 bg-muted", className)}
+    className={cn("-mx-4 my-4 h-px bg-muted", className)}
     {...props}
   />
 ));

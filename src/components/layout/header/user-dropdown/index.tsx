@@ -15,6 +15,7 @@ import { IconBook, IconChevronDown, IconHome, IconLogout, IconSettings } from "@
 import DropdownMenuLinkItem from "./dropdown-menu-link-item";
 import { Button } from "@/components/ui/button";
 import { TBaseUser } from "@/lib/schema";
+import { logoutUser } from "@/lib/api/auth";
 
 const links = [
   { text: "Bookings", href: "/profile/bookings", icon: IconBook },
@@ -23,6 +24,10 @@ const links = [
 ];
 
 const UserDropdown = ({ name, avatar }: Pick<TBaseUser, "name" | "avatar">) => {
+  const onLogout = () => {
+    logoutUser();
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -50,7 +55,7 @@ const UserDropdown = ({ name, avatar }: Pick<TBaseUser, "name" | "avatar">) => {
           ))}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
+        <DropdownMenuGroup onClick={onLogout}>
           <DropdownMenuItem className="text-primary hover:!bg-primary/10 hover:!text-primary">
             <IconLogout />
             <span>Log out</span>

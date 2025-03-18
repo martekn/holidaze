@@ -7,7 +7,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { differenceInCalendarDays } from "date-fns";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import * as React from "react";

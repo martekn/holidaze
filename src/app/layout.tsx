@@ -15,7 +15,7 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} ${roboto.variable} antialiased`}>
+      <body className={`${montserrat.variable} ${roboto.variable} min-h-screen antialiased`}>
         {children}
         <Toaster />
       </body>

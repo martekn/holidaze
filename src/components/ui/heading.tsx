@@ -1,5 +1,5 @@
 import { HeadingStyleProps, headingStyles } from "@/lib/styles/heading-styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import * as React from "react";
 
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement>, HeadingStyleProps {

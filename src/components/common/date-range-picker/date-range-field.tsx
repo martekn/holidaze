@@ -1,5 +1,5 @@
 import { inputIconStyles, inputStyles, InputStylesProps, inputWrapperStyles } from "@/lib/styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { IconCalendar } from "@tabler/icons-react";
 import { format } from "date-fns";
 import { DateRange } from "react-day-picker";

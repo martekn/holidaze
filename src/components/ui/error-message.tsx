@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { IconExclamationCircleFilled } from "@tabler/icons-react";
 import React from "react";
 

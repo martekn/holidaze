@@ -1,6 +1,6 @@
 import * as React from "react";
 import NextLink, { type LinkProps } from "next/link";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { ButtonStyleProps, buttonStyles } from "@/lib/styles";
 
 type ButtonLinkProps = LinkProps &

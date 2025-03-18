@@ -1,5 +1,5 @@
 import { headingStyles } from "@/lib/styles/heading-styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
 

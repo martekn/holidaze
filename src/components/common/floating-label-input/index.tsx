@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { floatingWrapperStyles, InputStylesProps } from "@/lib/styles";
 import { floatingInputStyles, floatingLabelStyles } from "@/lib/styles";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { TablerIcon } from "@tabler/icons-react";
 import React from "react";
 import { FieldError } from "react-hook-form";

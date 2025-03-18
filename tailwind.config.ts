@@ -11,6 +11,7 @@ const config: Config = {
     "./src/lib/styles/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
+    screens: { xs: "25em", sm: "40em", md: "48em", lg: "64em", xl: "80em", "2xl": "96em" },
     fontFamily: {
       base: ["var(--font-montserrat)"],
       accent: ["var(--font-roboto)"]
