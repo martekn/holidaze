@@ -42,7 +42,6 @@ export const setAuthToken = (token: string): void => {
 
 export const setUserData = (userData: TUserWithVenueManager): void => {
   const cookieStore = cookies();
-  console.log(cookieStore);
   cookieStore.set(COOKIE_KEYS.USER_INFO, JSON.stringify(userData), COOKIE_OPTIONS.client);
 };
 
