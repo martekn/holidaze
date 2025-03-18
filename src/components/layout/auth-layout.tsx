@@ -8,7 +8,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         <header>
           <Logo className="w-96" />
         </header>
-        <main className="mx-auto w-full max-w-md self-center pb-96">{children}</main>
+        <main className="mx-auto w-full max-w-md self-center pb-96 pt-32">{children}</main>
       </div>
     </div>
   );
