@@ -65,9 +65,18 @@ export const baseErrorSchema = z.object({
 });
 export type TBaseError = z.infer<typeof baseErrorSchema>;
 
-// Api error response
-export const apiErrorResponseSchema = z.object({
-  error: z.boolean(),
-  data: baseErrorSchema
+// Base registration schema
+export const baseUserRegistrationSchema = z.object({
+  name: z
+    .string({ required_error: "Username is required" })
+    .max(20, "Username cannot be longer than 20 characters"),
+  email: z
+    .string({
+      required_error: "Email is required"
+    })
+    .email()
+    .regex(/^[\w\-.]+@(stud\.)?noroff\.no$/, "Only stud.noroff.no emails are allowed to register")
+    .trim(),
+  password: z.string().min(8, "Password must be at least 8 characters long")
 });
-export type TApiErrorResponse = z.infer<typeof apiErrorResponseSchema>;
+export type TBaseUserRegistration = z.infer<typeof baseUserRegistrationSchema>;

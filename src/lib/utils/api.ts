@@ -1,32 +1,27 @@
 import { API_BASE_URL } from "../constants";
 import { getAuthToken } from "../cookies/server";
+import axios, { AxiosRequestConfig } from "axios";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 type Endpoint =
-  | "auth/login"
-  | "auth/register"
-  | "holidaze/venues"
+  | "/auth/login"
+  | "/auth/register"
+  | "/holidaze/venues"
   | "/holidaze/bookings"
+  | "/holidaze/profiles"
   | `/holidaze/bookings/${string}`
   | `/holidaze/venues/${string}`
   | `/holidaze/profiles/${string}`
   | `/holidaze/profiles/${string}/bookings`
   | `/holidaze/profiles/${string}/venues`;
 
-type NextFetchRequestConfig = {
-  revalidate?: number | false;
-  tags?: string[];
-};
-
-type FetchOptions<TBody = unknown> = {
+type FetchOptions<TData = unknown> = {
   method?: HttpMethod;
-  body?: TBody;
+  data?: TData;
   headers?: Record<string, string>;
   requireAuth?: boolean;
   apiKey?: string;
-  cache?: RequestCache;
-  next?: NextFetchRequestConfig;
   query?: Record<
     string,
     string | number | boolean | undefined | null | (string | number | boolean)[]
@@ -36,7 +31,7 @@ type FetchOptions<TBody = unknown> = {
 const API_KEY = process.env.API_KEY;
 
 /**
- * Generates headers for the fetch request.
+ * Generates headers for the axios request.
  *
  * @param options - Configuration options for generating headers.
  * @param [options.headers] - Additional headers to include in the request.
@@ -60,6 +55,7 @@ const generateHeaders = (options: Pick<FetchOptions, "headers" | "requireAuth" |
 
   if (options.requireAuth) {
     const token = getAuthToken();
+
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
     } else {
@@ -71,7 +67,7 @@ const generateHeaders = (options: Pick<FetchOptions, "headers" | "requireAuth" |
 };
 
 /**
- * Generates the full URL for the fetch request, including query parameters.
+ * Generates the full URL for the axios request, including query parameters.
  *
  * @param endpoint - The API endpoint to fetch data from.
  * @param [query] - Query parameters to include in the URL.
@@ -108,69 +104,78 @@ const generateUrl = (endpoint: Endpoint, query?: FetchOptions["query"]) => {
 };
 
 /**
- * Generates the fetch options for the request, including method, headers, and body.
+ * Generates the axios options for the request, including method, headers, and body.
  *
  * @param headers - The headers to include in the request.
  * @param options - Configuration options for the fetch request.
  * @param [options.method] - The HTTP method to use (e.g., "GET", "POST").
  * @param [options.body] - The request body for non-GET requests.
- * @param [options.cache] - The caching strategy for the request.
- * @param [options.next] - Next.js-specific fetch configuration.
  * @returns - The generated fetch options.
  */
-const generateFetchOptions = <TBody>(
+const generateAxiosConfig = <TData>(
   headers: Record<string, string>,
-  options: FetchOptions<TBody>
-): RequestInit => {
-  const fetchOptions: RequestInit = {
+  options: FetchOptions<TData>
+): AxiosRequestConfig => {
+  const axiosConfig: AxiosRequestConfig<TData> = {
     method: options.method || "GET",
-    headers,
-    cache: options.cache,
-    next: options.next
+    headers
   };
 
-  if (options.body && options.method !== "GET") {
-    fetchOptions.body = JSON.stringify(options.body);
+  if (options.data && options.method !== "GET") {
+    axiosConfig.data = options.data;
   }
 
-  return fetchOptions;
+  return axiosConfig;
 };
 
 /**
- * Fetches data from the specified API endpoint.
+ * Fetches data from the specified API endpoint with axios.
  *
  * @param endpoint - The API endpoint to fetch data from.
- * @param [options] - Optional configuration for the fetch request.
+ * @param [options] - Optional configuration for the axios request.
  * @param [options.method] - The HTTP method to use (e.g., "GET", "POST").
- * @param [options.body] - The request body for non-GET requests.
+ * @param [options.data] - The request body for non-GET requests.
  * @param [options.headers] - Additional headers to include in the request.
  * @param [options.requireAuth] - Whether authentication is required for the request.
  * @param [options.apiKey] - The API key to use for the request.
- * @param [options.cache] - The caching strategy for the request.
- * @param [options.next] - Next.js-specific fetch configuration.
  * @param [options.query] - Query parameters to include in the request URL.
- * @returns - The response data if the request is successful, or an error object if the request fails.
- * @throws - Throws an error if the fetch request fails unexpectedly.
+ * @returns - The response data if the request is successful
+ * @throws - Throws an error if the server responds with status code outside of 2xx range or unexpected errors
  */
-export const apiFetch = async <TBody = unknown>(
+export const apiFetch = async <TData = unknown>(
   endpoint: Endpoint,
-  options: FetchOptions<TBody> = {}
+  options: FetchOptions<TData> = {}
 ): Promise<unknown> => {
   const headers = generateHeaders(options);
   const url = generateUrl(endpoint, options.query);
-  const fetchOptions = generateFetchOptions<TBody>(headers, options);
-
+  const fetchOptions = generateAxiosConfig<TData>(headers, options);
   try {
-    const response = await fetch(url, fetchOptions);
-    const data = await response.json();
-
-    if (!response.ok) {
-      return { error: true, data };
-    }
+    const response = await axios(url, fetchOptions);
+    const data = response.data;
 
     return data;
   } catch (error) {
-    console.error("Fetch error:", error);
-    throw error;
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        throw error.response.data;
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+    }
+
+    // Generic error message
+    console.error(error);
+    throw { errors: [{ message: "Unexpected fetch error" }] };
   }
 };
