@@ -26,6 +26,7 @@ const LoginPage = () => {
 
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("next");
+  console.log(redirectTo);
   const form = useForm<TApiLoginRequest>({
     resolver: zodResolver(apiLoginRequestSchema),
     defaultValues: { email: "", password: "" }
@@ -99,7 +100,11 @@ const LoginPage = () => {
           <Button className="w-full">Log in</Button>
           <div className="text-muted-foreground">
             <span>Dont have an account?</span>{" "}
-            <Link href={`/register?next=${redirectTo}`} variant={"link"} size="custom">
+            <Link
+              href={redirectTo ? `/register?next=${redirectTo}` : "/register"}
+              variant={"link"}
+              size="custom"
+            >
               Register
             </Link>
           </div>

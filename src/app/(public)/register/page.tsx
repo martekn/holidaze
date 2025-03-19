@@ -175,7 +175,11 @@ const RegisterPage = () => {
           <Button className="w-full">Create account</Button>
           <div className="text-muted-foreground">
             <span>Already have an account?</span>{" "}
-            <Link href="/login" variant={"link"} size="custom">
+            <Link
+              href={redirectTo ? `/login?next=${redirectTo}` : "/login"}
+              variant={"link"}
+              size="custom"
+            >
               Log in
             </Link>
           </div>
