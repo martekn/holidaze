@@ -161,7 +161,7 @@ const HomePage = async () => {
             isSection
             sectionInnerSpacing={"lg"}
             title="Want to become a host?"
-            body="Join our community and turn your space into a dream destination for  travelers! Whether it's a cozy cabin, a chic city apartment, or a  beachfront villa, we make it easy to share your space and start earning. "
+            body="Join our community and turn your space into a dream destination for travelers! Whether it's a cozy cabin, a chic city apartment, or a beachfront villa, we make it easy to share your space and start earning."
           >
             <Link href="/become-a-host">Get started</Link>
           </Banner>
