@@ -9,8 +9,9 @@ import {
 } from "@/lib/styles/card-styles";
 import { HeadingStyleProps, headingStyles } from "@/lib/styles/heading-styles";
 import { AspectRatio } from "./aspect-ratio";
-import Image, { ImageProps } from "next/image";
+import { ImageProps } from "next/image";
 import { Slot } from "@radix-ui/react-slot";
+import { ImageWithFallback } from "./image-with-fallback";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement>, CardStyleProps {
   asChild?: boolean;
@@ -71,14 +72,28 @@ interface CardImageProps extends Omit<ImageProps, "ref">, CardImageStyleProps {
   className?: string;
   scaleOnHover?: boolean;
   alt: string;
+  fallbackSrc?: string;
 }
 
 const CardImage = React.forwardRef<HTMLDivElement, CardImageProps>(
-  ({ ratio, className, scaleOnHover = false, alt, rounded = "all", ...props }, ref) => {
+  (
+    {
+      ratio,
+      className,
+      scaleOnHover = false,
+      alt,
+      rounded = "all",
+      fallbackSrc = "/images/placeholder.jpg?height=400&width=600",
+      ...props
+    },
+    ref
+  ) => {
     const image = (
-      <Image
-        alt={alt}
+      <ImageWithFallback
+        alt={alt || "Image"}
         fill
+        unoptimized
+        fallbackSrc={fallbackSrc}
         {...props}
         className={cn(
           "object-cover object-center",
