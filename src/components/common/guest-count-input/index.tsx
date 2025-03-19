@@ -3,18 +3,20 @@ import { FloatingLabelInput } from "../floating-label-input";
 import { Button } from "@/components/ui/button";
 import { IconMinus, IconPlus, IconUsers } from "@tabler/icons-react";
 import { Input } from "@/components/ui/input";
+import { InputStylesProps } from "@/lib/styles";
 
 interface GuestCountInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> {
   isFloating?: boolean;
   label?: string;
+  borderStyle?: InputStylesProps["borderStyle"];
   id: string;
   value: number | undefined;
   onChange: (value: number | undefined) => void;
 }
 
 const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>(
-  ({ isFloating = false, label, id, value, onChange, ...props }, ref) => {
+  ({ isFloating = false, label, id, value, onChange, borderStyle, ...props }, ref) => {
     const handleGuestIncrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
       const maxGuests = 100;
@@ -36,6 +38,7 @@ const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>
             id={id}
             ref={ref}
             type="number"
+            borderStyle={borderStyle}
             label={label ?? ""}
             icon={IconUsers}
             readOnly
@@ -47,6 +50,7 @@ const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>
             id={id}
             ref={ref}
             type="text"
+            borderStyle={borderStyle}
             icon={IconUsers}
             readOnly
             value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}

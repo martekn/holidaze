@@ -93,6 +93,7 @@ const SearchForm = () => {
           render={({ field }) => (
             <FormItem className="col-span-full lg:col-span-1">
               <FloatingLabelInput
+                borderStyle={"light"}
                 {...field}
                 icon={IconMapPin}
                 id="destination"
@@ -109,6 +110,7 @@ const SearchForm = () => {
             <FormItem>
               <FormControl>
                 <DateRangePicker
+                  borderStyle={"light"}
                   label="Check in - Check out"
                   value={field.value}
                   placeholder="Where to?"
@@ -126,7 +128,13 @@ const SearchForm = () => {
           name="guestCount"
           render={({ field }) => (
             <FormItem>
-              <GuestCountInput {...field} isFloating id="test" label="Guests" />
+              <GuestCountInput
+                {...field}
+                isFloating
+                id="test"
+                borderStyle={"light"}
+                label="Guests"
+              />
             </FormItem>
           )}
         />
