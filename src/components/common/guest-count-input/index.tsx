@@ -13,65 +13,64 @@ interface GuestCountInputProps
   onChange: (value: number | undefined) => void;
 }
 
-const GuestCountInput = ({
-  isFloating = false,
-  label,
-  id,
-  value,
-  onChange,
-  ...props
-}: GuestCountInputProps) => {
-  const handleGuestIncrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    const maxGuests = 100;
-    const newValue = value === undefined ? 1 : Math.min(value + 1, maxGuests);
-    onChange(newValue);
-  };
+const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>(
+  ({ isFloating = false, label, id, value, onChange, ...props }, ref) => {
+    const handleGuestIncrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      const maxGuests = 100;
+      const newValue = value === undefined ? 1 : Math.min(value + 1, maxGuests);
+      onChange(newValue);
+    };
 
-  const handleGuestDecrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (value === undefined || value <= 1) return;
-    onChange(value - 1);
-  };
+    const handleGuestDecrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (value === undefined || value <= 1) return;
+      onChange(value - 1);
+    };
 
-  return (
-    <div className="relative">
-      {isFloating ? (
-        <FloatingLabelInput
-          {...props}
-          id={id}
-          type="number"
-          label={label ?? ""}
-          icon={IconUsers}
-          readOnly
-          value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}
-        />
-      ) : (
-        <Input
-          {...props}
-          id={id}
-          type="text"
-          icon={IconUsers}
-          readOnly
-          value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}
-        />
-      )}
-      <div className="absolute right-16 top-1/2 flex -translate-y-1/2 items-center space-x-4">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-32 w-32"
-          onClick={handleGuestDecrement}
-          disabled={value === undefined || value <= 1}
-        >
-          <IconMinus className="h-16 w-16" />
-        </Button>
-        <Button variant="ghost" size="icon" className="h-32 w-32" onClick={handleGuestIncrement}>
-          <IconPlus className="h-16 w-16" />
-        </Button>
+    return (
+      <div className="relative">
+        {isFloating ? (
+          <FloatingLabelInput
+            {...props}
+            id={id}
+            ref={ref}
+            type="number"
+            label={label ?? ""}
+            icon={IconUsers}
+            readOnly
+            value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}
+          />
+        ) : (
+          <Input
+            {...props}
+            id={id}
+            ref={ref}
+            type="text"
+            icon={IconUsers}
+            readOnly
+            value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}
+          />
+        )}
+        <div className="absolute right-16 top-1/2 flex -translate-y-1/2 items-center space-x-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-32 w-32"
+            onClick={handleGuestDecrement}
+            disabled={value === undefined || value <= 1}
+          >
+            <IconMinus className="h-16 w-16" />
+          </Button>
+          <Button variant="ghost" size="icon" className="h-32 w-32" onClick={handleGuestIncrement}>
+            <IconPlus className="h-16 w-16" />
+          </Button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+GuestCountInput.displayName = "GuestCountInput";
 
 export default GuestCountInput;
