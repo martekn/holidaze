@@ -12,7 +12,6 @@ import Banner from "@/components/common/banner";
 import { apiFetch } from "@/lib/utils/api";
 import { baseListingSchema, paginatedApiResponseSchema, TBaseListing } from "@/lib/schema";
 import { z } from "zod";
-import { Alert } from "@/components/ui/alert";
 
 const apiListingSchema = paginatedApiResponseSchema.extend({
   data: z.array(baseListingSchema)
@@ -61,9 +60,13 @@ const HomePage = async () => {
           </Heading>
           {!error && <Carousel listings={topRatedListings} />}
           {!!error && (
-            <Alert title="Oops! Something went wrong fetching listings">
-              <p>Please refresh the page or try again later</p>
-            </Alert>
+            <Banner
+              type="minimal"
+              isSection
+              title="Oops! Something went wrong."
+              body="We're having trouble loading the guest favorites listings. Please try again later."
+              sectionInnerSpacing={"lg"}
+            />
           )}
         </Section>
       </Container>
@@ -142,9 +145,13 @@ const HomePage = async () => {
             </ul>
           )}
           {!!error && (
-            <Alert title="Oops! Something went wrong fetching listings">
-              <p>Please refresh the page or try again later</p>
-            </Alert>
+            <Banner
+              type="minimal"
+              title="Oops! Something went wrong."
+              body="We're having trouble loading the budget friendly listings. Please try again later."
+              sectionInnerSpacing={"lg"}
+              isSection
+            />
           )}
         </Section>
       </Container>
