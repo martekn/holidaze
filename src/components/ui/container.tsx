@@ -2,21 +2,37 @@ import { cn } from "@/lib/utils/shadcn-utils";
 import { Slot } from "@radix-ui/react-slot";
 import React from "react";
 
-type ContainerProps = {
+import { cva, VariantProps } from "class-variance-authority";
+
+export const containerStyles = cva("px-16 mx-auto", {
+  variants: {
+    variant: {
+      fullBleed: "w-full mx-0",
+      sm: "max-w-screen-sm",
+      md: "max-w-screen-md",
+      lg: "max-w-screen-lg",
+      xl: "max-w-screen-xl",
+      "2xl": "max-w-screen-2xl"
+    }
+  },
+  defaultVariants: {
+    variant: "xl"
+  }
+});
+
+export type ContainerStyleProps = VariantProps<typeof containerStyles>;
+
+type ContainerProps = ContainerStyleProps & {
   children: React.ReactNode;
-  variant?: "full-bleed" | "2xl" | "xl" | "lg" | "md" | "sm";
   className?: string;
   asChild?: boolean;
 };
-const Container = ({ variant = "xl", children, className, asChild, ...props }: ContainerProps) => {
-  const isFullBleed = variant === "full-bleed";
+
+const Container = ({ variant, children, className, asChild, ...props }: ContainerProps) => {
   const Comp = asChild ? Slot : "div";
 
   return (
-    <Comp
-      className={cn("px-16", isFullBleed ? "w-full" : `mx-auto max-w-screen-${variant}`, className)}
-      {...props}
-    >
+    <Comp className={cn(containerStyles({ variant }), className)} {...props}>
       {children}
     </Comp>
   );
