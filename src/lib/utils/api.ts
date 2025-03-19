@@ -44,7 +44,7 @@ const generateHeaders = (options: Pick<FetchOptions, "headers" | "requireAuth" |
   const apiKey = options.apiKey || API_KEY;
 
   if (!apiKey) {
-    throw new Error("API is required but not provided");
+    throw new Error("API key is required but not provided");
   }
 
   const headers: Record<string, string> = {
