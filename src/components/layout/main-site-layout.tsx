@@ -11,7 +11,7 @@ const MainSiteLayout = ({
 }) => {
   return (
     <>
-      <div className="min-h-screen">
+      <div className="flex min-h-screen flex-col">
         <Header showSearch={showHeaderSearch} />
         {children}
       </div>

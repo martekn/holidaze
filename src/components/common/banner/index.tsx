@@ -47,7 +47,7 @@ const Banner = ({
         >
           {title}
         </Heading>
-        <p className="leading-7 text-muted-foreground">{body}</p>
+        <p className="leading-7">{body}</p>
       </div>
       {children && <div className="mx-auto">{children}</div>}
     </Card>

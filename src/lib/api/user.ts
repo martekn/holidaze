@@ -1,7 +1,7 @@
 "use server";
 
-import { getAuthToken, setUserData } from "../cookies/server";
-import { apiProfileResponseSchema } from "../schema";
+import { getAuthToken, getUserData, setUserData } from "../cookies/server";
+import { apiProfileResponseSchema, TUserWithVenueManager } from "../schema";
 import { apiFetch } from "../utils/api";
 import { getTokenPayload } from "../utils/get-token-payload";
 
@@ -24,5 +24,27 @@ export const setUser = async (accessToken?: string) => {
   if (!validated.success) {
     throw new Error("Invalid profile response schema");
   }
+  setUserData(validated.data.data);
+};
+
+export const updateUser = async (data: Partial<TUserWithVenueManager>) => {
+  const user = await getUserData();
+
+  if (!user) return;
+
+  const newUserData = { ...user, ...data };
+
+  const username = user.name;
+  const response = await apiFetch(`/holidaze/profiles/${username}`, {
+    method: "PUT",
+    requireAuth: true,
+    data: newUserData
+  });
+
+  const validated = apiProfileResponseSchema.safeParse(response);
+  if (!validated.success) {
+    throw new Error("Invalid profile response schema");
+  }
+
   setUserData(validated.data.data);
 };

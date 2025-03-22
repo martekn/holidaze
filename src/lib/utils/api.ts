@@ -40,7 +40,9 @@ const API_KEY = process.env.API_KEY;
  * @returns - The generated headers.
  * @throws - Throws an error if the API key is missing or if authentication is required but no token is found.
  */
-const generateHeaders = (options: Pick<FetchOptions, "headers" | "requireAuth" | "apiKey">) => {
+const generateHeaders = async (
+  options: Pick<FetchOptions, "headers" | "requireAuth" | "apiKey">
+) => {
   const apiKey = options.apiKey || API_KEY;
 
   if (!apiKey) {
@@ -54,7 +56,7 @@ const generateHeaders = (options: Pick<FetchOptions, "headers" | "requireAuth" |
   };
 
   if (options.requireAuth) {
-    const token = getAuthToken();
+    const token = await getAuthToken();
 
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
@@ -146,7 +148,7 @@ export const apiFetch = async <TData = unknown>(
   endpoint: Endpoint,
   options: FetchOptions<TData> = {}
 ): Promise<unknown> => {
-  const headers = generateHeaders(options);
+  const headers = await generateHeaders(options);
   const url = generateUrl(endpoint, options.query);
   const fetchOptions = generateAxiosConfig<TData>(headers, options);
   try {
