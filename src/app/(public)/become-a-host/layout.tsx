@@ -1,11 +1,12 @@
-// import type { Metadata } from "next";
+import type { Metadata } from "next";
 import MainSiteLayout from "@/components/layout/main-site-layout";
 
-// export const metadata: Metadata = {
-//   title: "Holidaze | Discover Unique Accommodations",
-//   description:
-//     "Welcome to Holidaze! Explore and book unique accommodations for your next getaway. Find the perfect stay for your vacation."
-// };
+export const metadata: Metadata = {
+  title: "Become a Host | Holidaze",
+  description:
+    "List your property on Holidaze and join our community of hosts. Share your unique space with travelers and start earning today. Simple registration process with full control over your listings."
+};
+
 const Layout = ({
   children
 }: Readonly<{
