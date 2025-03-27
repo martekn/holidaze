@@ -1,45 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Link from "next/link";
 import { Card, CardImage, CardTitle } from "@/components/ui/card";
 import Rating from "@/components/ui/rating";
 import Price from "@/components/ui/price";
 import { cn } from "@/lib/utils/shadcn-utils";
-import { IconParking, IconPaw, IconSoup, IconWifi } from "@tabler/icons-react";
-import { TAmenity, TBaseListing } from "@/lib/schema";
+import { TBaseListing } from "@/lib/schema";
 import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
-
-const AMENITIES = {
-  parking: {
-    icon: IconParking,
-    title: "Parking"
-  },
-  breakfast: {
-    icon: IconSoup,
-    title: "Breakfast"
-  },
-  wifi: {
-    icon: IconWifi,
-    title: "Wi-Fi"
-  },
-  pets: {
-    icon: IconPaw,
-    title: "Pet friendly"
-  }
-};
-
-type AmenityKey = keyof typeof AMENITIES;
-
-const getFilteredAmenities = (meta: TAmenity): AmenityKey[] => {
-  const supportedAmenities = Object.entries(meta).filter(([key]) => {
-    return Object.keys(AMENITIES).includes(key);
-  });
-
-  const includedAmenities = supportedAmenities
-    .filter(([, value]) => value)
-    .map(([key]) => key as AmenityKey);
-  return includedAmenities;
-};
+import Amenities from "@/components/ui/amenitites";
 
 type DetailedListingCardProps = {
   listing: TBaseListing;
@@ -48,13 +16,7 @@ type DetailedListingCardProps = {
 const DetailedListingCard = ({ listing, className }: DetailedListingCardProps) => {
   const { location, name, media, price, rating, id, meta } = listing;
 
-  const [filteredAmenities, setFilteredAmenities] = useState<AmenityKey[]>([]);
-
   const address = getFormattedAddress(location);
-
-  useEffect(() => {
-    setFilteredAmenities(getFilteredAmenities(meta));
-  }, [meta]);
 
   return (
     <Card
@@ -89,24 +51,7 @@ const DetailedListingCard = ({ listing, className }: DetailedListingCardProps) =
               textClassName="@md/card-body:block hidden"
             />
           </div>
-          <ul className="flex flex-wrap items-center gap-8">
-            {filteredAmenities.map((amenity, index) => {
-              const Icon = AMENITIES[amenity].icon;
-              const title = AMENITIES[amenity].title;
-              return (
-                <li className="flex items-center gap-8" key={index}>
-                  <div className="flex items-center gap-4">
-                    <Icon className="h-20 w-20 stroke-[1.3]" />
-                    <span>{title}</span>
-                  </div>
-
-                  {index !== filteredAmenities.length - 1 && (
-                    <div aria-hidden className="h-[2px] w-[2px] rounded-full bg-muted-foreground" />
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+          <Amenities amenitiesMeta={meta} variant={"small"} layout={"rowSpacer"} />
         </div>
         <div className="mt-24 w-full border-t border-neutral-200 pt-24">
           <Price price={price} />
