@@ -34,25 +34,28 @@ const Gallery = ({ images }: { images: TBaseListing["media"] }) => {
   return (
     <div>
       <GalleryDisplay images={images} onImageClick={openSlideshow} onButtonClick={openGallery} />
+      {images.length > 0 && (
+        <>
+          <GalleryDialog
+            images={images}
+            open={galleryOpen}
+            onOpenChange={setGalleryOpen}
+            onImageClick={openSlideshow}
+            onClose={closeAll}
+          />
 
-      <GalleryDialog
-        images={images}
-        open={galleryOpen}
-        onOpenChange={setGalleryOpen}
-        onImageClick={openSlideshow}
-        onClose={closeAll}
-      />
-
-      <SlideshowDialog
-        images={images}
-        onOpenChange={setSlideshowOpen}
-        open={slideshowOpen}
-        currentIndex={currentImageIndex}
-        setCurrentIndex={setCurrentImageIndex}
-        onBackToGallery={backToGallery}
-        galleryOpen={galleryOpen}
-        onClose={closeAll}
-      />
+          <SlideshowDialog
+            images={images}
+            onOpenChange={setSlideshowOpen}
+            open={slideshowOpen}
+            currentIndex={currentImageIndex}
+            setCurrentIndex={setCurrentImageIndex}
+            onBackToGallery={backToGallery}
+            galleryOpen={galleryOpen}
+            onClose={closeAll}
+          />
+        </>
+      )}
     </div>
   );
 };
