@@ -113,7 +113,7 @@ const SearchForm = () => {
                   borderStyle={"light"}
                   label="Check in - Check out"
                   value={field.value}
-                  placeholder="Where to?"
+                  placeholder="Select dates"
                   isFloating
                   onChange={(date: DateRange | undefined) => {
                     field.onChange(date || null);

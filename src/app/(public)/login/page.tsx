@@ -26,7 +26,6 @@ const LoginPage = () => {
 
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("next");
-  console.log(redirectTo);
   const form = useForm<TApiLoginRequest>({
     resolver: zodResolver(apiLoginRequestSchema),
     defaultValues: { email: "", password: "" }

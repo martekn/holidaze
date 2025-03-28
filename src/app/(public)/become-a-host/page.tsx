@@ -11,7 +11,6 @@ import HostConfirmationDialog from "./components/host-confirmation-dialog";
 
 const BecomeAHostPage = async () => {
   const user = await getUserData();
-  console.log("current", user);
   const isAuthenticated = !!user;
   const isHost = isAuthenticated && user.venueManager;
 
