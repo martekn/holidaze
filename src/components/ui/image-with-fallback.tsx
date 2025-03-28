@@ -10,7 +10,7 @@ interface ImageWithFallbackProps extends Omit<ImageProps, "onError"> {
 export function ImageWithFallback({
   alt,
   src,
-  fallbackSrc = "/placeholder.svg?height=400&width=600",
+  fallbackSrc = "/images/placeholder.jpg",
   className,
   ...props
 }: ImageWithFallbackProps) {
@@ -19,7 +19,7 @@ export function ImageWithFallback({
   return (
     <Image
       {...props}
-      src={imgSrc || "/placeholder.svg"}
+      src={imgSrc || "/images/placeholder.jpg"}
       alt={alt || "Image"}
       className={className}
       onError={() => {

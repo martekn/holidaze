@@ -11,16 +11,17 @@ interface GuestCountInputProps
   label?: string;
   borderStyle?: InputStylesProps["borderStyle"];
   id: string;
+  maxGuests?: number;
   value: number | undefined;
   onChange: (value: number | undefined) => void;
 }
 
 const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>(
-  ({ isFloating = false, label, id, value, onChange, borderStyle, ...props }, ref) => {
+  ({ isFloating = false, maxGuests, label, id, value, onChange, borderStyle, ...props }, ref) => {
+    const maxValue = maxGuests ?? 100;
     const handleGuestIncrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
-      const maxGuests = 100;
-      const newValue = value === undefined ? 1 : Math.min(value + 1, maxGuests);
+      const newValue = value === undefined ? 1 : Math.min(value + 1, maxValue);
       onChange(newValue);
     };
 
@@ -66,7 +67,13 @@ const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>
           >
             <IconMinus className="h-16 w-16" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-32 w-32" onClick={handleGuestIncrement}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-32 w-32"
+            onClick={handleGuestIncrement}
+            disabled={value === maxValue}
+          >
             <IconPlus className="h-16 w-16" />
           </Button>
         </div>

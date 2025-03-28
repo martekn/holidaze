@@ -1,3 +1,4 @@
+import { DateRange } from "react-day-picker";
 import { z } from "zod";
 
 // Media schema
@@ -57,7 +58,9 @@ export type TPaginatedApiResponse = z.infer<typeof paginatedApiResponseSchema>;
 export const baseErrorSchema = z.object({
   errors: z.array(
     z.object({
-      message: z.string()
+      message: z.string(),
+      code: z.string().optional(),
+      path: z.array(z.union([z.string(), z.number()])).optional()
     })
   ),
   status: z.string().optional(),
@@ -80,3 +83,20 @@ export const baseUserRegistrationSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters long")
 });
 export type TBaseUserRegistration = z.infer<typeof baseUserRegistrationSchema>;
+
+export const requiredDateRangeSchema = z.custom<DateRange>(
+  (val) => {
+    return (
+      val &&
+      typeof val === "object" &&
+      "from" in val &&
+      "to" in val &&
+      val.from instanceof Date &&
+      val.to instanceof Date
+    );
+  },
+  {
+    message: "Please select check-in and check-out dates"
+  }
+);
+export type TRequiredDateRange = z.infer<typeof requiredDateRangeSchema>;

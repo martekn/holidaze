@@ -11,7 +11,15 @@ const config: Config = {
     "./src/lib/styles/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
-    screens: { xs: "25rem", sm: "40rem", md: "48rem", lg: "64rem", xl: "80rem", "2xl": "96rem" },
+    screens: {
+      xs: "25rem",
+      sm: "40rem",
+      md: "48rem",
+      lg: "64rem",
+      xl: "80rem",
+      "2xl": "96rem",
+      "3xl": "150rem"
+    },
     fontFamily: {
       base: ["var(--font-montserrat)"],
       accent: ["var(--font-roboto)"]
@@ -117,7 +125,8 @@ const config: Config = {
       lg: "var(--radius)",
       md: "calc(var(--radius) - 2px)",
       sm: "calc(var(--radius) - 4px)",
-      full: "50%"
+      full: "50%",
+      none: "0px"
     }
   },
   plugins: [tailwindcssAnimate, containerQueries]

@@ -1,0 +1,114 @@
+"use client";
+
+import { DateRangePicker } from "@/components/common/date-range-picker";
+import GuestCountInput from "@/components/common/guest-count-input";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "@/components/ui/form";
+import Price from "@/components/ui/price";
+import { TListingWithBookings } from "@/lib/schema";
+import { getBookingFormSchema, TBookingFormData } from "@/lib/schema/forms/booking";
+import { headingStyles } from "@/lib/styles/heading-styles";
+import { calculateBookingDetails } from "@/lib/utils/calculate-booking-details";
+import { getBookedDates } from "@/lib/utils/get-booked-dates";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { DateRange } from "react-day-picker";
+import { useForm } from "react-hook-form";
+
+const BookingForm = ({ listing }: { listing: TListingWithBookings }) => {
+  const router = useRouter();
+  const bookedDates = getBookedDates(listing.bookings);
+  const bookingFormSchema = getBookingFormSchema(listing.maxGuests);
+  const form = useForm<TBookingFormData>({
+    resolver: zodResolver(bookingFormSchema),
+    defaultValues: {
+      dateRange: { from: undefined, to: undefined },
+      guestCount: 1
+    },
+    mode: "onTouched"
+  });
+
+  const onSubmit = (data: TBookingFormData) => {
+    const params = new URLSearchParams();
+    if (data.dateRange.from) params.set("from", data.dateRange.from.toISOString());
+    if (data.dateRange.to) params.set("to", data.dateRange.to.toISOString());
+    if (data.guestCount) params.set("guests", data.guestCount.toString());
+    const queryString = params.toString();
+    const query = queryString ? `?${queryString}` : "";
+    router.push(`/bookings/${listing.id}/${query}`);
+  };
+
+  const dateRange = form.watch("dateRange");
+  const { nights, totalPrice, isValidRange } = calculateBookingDetails(dateRange, listing.price);
+
+  return (
+    <Card variant={"outline"} padding={"lg"} className="space-y-24">
+      <Price price={listing.price} variant={"lg"} />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-24">
+          <FormField
+            control={form.control}
+            name="dateRange"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <DateRangePicker
+                    borderStyle={"light"}
+                    label="Check in - Check out"
+                    value={field.value}
+                    placeholder="Select dates"
+                    onChange={(date: DateRange | undefined) => {
+                      field.onChange(date);
+                    }}
+                    bookedDates={bookedDates}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="guestCount"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Guests</FormLabel>
+                <GuestCountInput
+                  {...field}
+                  id="test"
+                  borderStyle={"light"}
+                  maxGuests={listing.maxGuests}
+                  label="Guests"
+                />
+              </FormItem>
+            )}
+          />
+
+          {isValidRange && (
+            <div className="flex items-center justify-between border-t pt-24">
+              <span>
+                Total price for {nights} night{nights > 1 ? "s" : null}
+              </span>
+              <span className={headingStyles({ variant: "heading5" })}>${totalPrice}</span>
+            </div>
+          )}
+
+          <Button type="submit" className="w-full">
+            Search
+          </Button>
+        </form>
+      </Form>
+    </Card>
+  );
+};
+
+export default BookingForm;
