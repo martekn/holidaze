@@ -15,7 +15,9 @@ const Header = async ({ showSearch = true }) => {
   const isAuthenticated = !!user;
 
   return (
-    <header className="relative border-b border-neutral-200 py-16 max-lg:mb-40">
+    <header
+      className={cn("relative border-b border-neutral-200 py-16", showSearch && "max-lg:mb-40")}
+    >
       <Container
         className={cn(
           "grid min-h-40 grid-cols-2 flex-wrap items-center justify-between gap-16",
