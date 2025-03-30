@@ -7,7 +7,7 @@ import Price from "@/components/ui/price";
 import { cn } from "@/lib/utils/shadcn-utils";
 import { TBaseListing } from "@/lib/schema";
 import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
-import Amenities from "@/components/ui/amenitites";
+import Amenities from "@/components/ui/amenities";
 
 type DetailedListingCardProps = {
   listing: TBaseListing;

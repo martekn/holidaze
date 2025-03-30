@@ -1,6 +1,7 @@
 import { Card, CardTitle } from "@/components/ui/card";
 import { TBookingWithListing } from "@/lib/schema";
 import { headingStyles } from "@/lib/styles/heading-styles";
+import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
 import { cn } from "@/lib/utils/shadcn-utils";
 import { differenceInCalendarDays, format, parseISO } from "date-fns";
 import Link from "next/link";
@@ -39,7 +40,9 @@ const BookingInfoCard = ({ booking, className, ...props }: BookingInfoCardProps)
           <CardTitle asChild hoverEffect>
             <Link href={`/listings/${venue.id}`}>{venue.name}</Link>
           </CardTitle>
-          <address className="font-normal not-italic">Full location</address>
+          <address className="font-normal not-italic">
+            {getFormattedAddress(venue.location)}
+          </address>
         </header>
         <dl className="mt-24 grid gap-x-48 gap-y-16 @xs:grid-cols-2 @md:grid-cols-3 @2xl:grid-cols-5">
           <div className="@xs:col-start-1 @md:col-start-auto">

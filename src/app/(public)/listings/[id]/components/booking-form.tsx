@@ -24,15 +24,26 @@ import React from "react";
 import { DateRange } from "react-day-picker";
 import { useForm } from "react-hook-form";
 
-const BookingForm = ({ listing }: { listing: TListingWithBookings }) => {
+const BookingForm = ({
+  listing,
+  to,
+  from,
+  guests
+}: {
+  listing: TListingWithBookings;
+  to?: string;
+  from?: string;
+  guests?: string;
+}) => {
   const router = useRouter();
   const bookedDates = getBookedDates(listing.bookings);
   const bookingFormSchema = getBookingFormSchema(listing.maxGuests);
+
   const form = useForm<TBookingFormData>({
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
-      dateRange: { from: undefined, to: undefined },
-      guestCount: 1
+      dateRange: { from: from ? new Date(from) : undefined, to: to ? new Date(to) : undefined },
+      guestCount: guests ? Number(guests) : 1
     },
     mode: "onTouched"
   });
@@ -44,7 +55,7 @@ const BookingForm = ({ listing }: { listing: TListingWithBookings }) => {
     if (data.guestCount) params.set("guests", data.guestCount.toString());
     const queryString = params.toString();
     const query = queryString ? `?${queryString}` : "";
-    router.push(`/bookings/${listing.id}/${query}`);
+    router.push(`/bookings/${listing.id}/book/${query}`);
   };
 
   const dateRange = form.watch("dateRange");
@@ -67,7 +78,7 @@ const BookingForm = ({ listing }: { listing: TListingWithBookings }) => {
                     value={field.value}
                     placeholder="Select dates"
                     onChange={(date: DateRange | undefined) => {
-                      field.onChange(date);
+                      field.onChange(date ?? { from: undefined, to: undefined });
                     }}
                     bookedDates={bookedDates}
                   />
@@ -103,7 +114,7 @@ const BookingForm = ({ listing }: { listing: TListingWithBookings }) => {
           )}
 
           <Button type="submit" className="w-full">
-            Search
+            Continue to booking
           </Button>
         </form>
       </Form>
