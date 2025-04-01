@@ -11,17 +11,12 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Avatar } from "@/components/ui/avatar";
-import { IconBook, IconChevronDown, IconHome, IconLogout, IconSettings } from "@tabler/icons-react";
+import { IconChevronDown, IconLogout } from "@tabler/icons-react";
 import DropdownMenuLinkItem from "./dropdown-menu-link-item";
 import { Button } from "@/components/ui/button";
 import { TBaseUser } from "@/lib/schema";
 import { logoutUser } from "@/lib/api/auth";
-
-const links = [
-  { text: "Bookings", href: "/profile/bookings", icon: IconBook },
-  { text: "Listings", href: "/profile/listings", icon: IconHome },
-  { text: "Settings", href: "/profile/settings", icon: IconSettings }
-];
+import { PROFILE_LINKS } from "@/lib/constants";
 
 const UserDropdown = ({ name, avatar }: Pick<TBaseUser, "name" | "avatar">) => {
   const onLogout = () => {
@@ -48,7 +43,7 @@ const UserDropdown = ({ name, avatar }: Pick<TBaseUser, "name" | "avatar">) => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="space-y-8">
-          {links.map(({ text, href, icon: Icon }, index) => (
+          {PROFILE_LINKS.map(({ text, href, icon: Icon }, index) => (
             <DropdownMenuLinkItem key={index} href={href} icon={<Icon />}>
               {text}
             </DropdownMenuLinkItem>
