@@ -49,7 +49,7 @@ const ProfileLayout = ({
           })}
         </ul>
       </nav>
-      <main className="pt-32 md:pt-64 lg:col-span-2 xl:col-span-3">{children}</main>
+      <main className="pb-64 pt-32 md:pb-128 md:pt-64 lg:col-span-2 xl:col-span-3">{children}</main>
     </Container>
   );
 };

@@ -1,15 +1,16 @@
 import { Card, CardTitle } from "@/components/ui/card";
 import { TBookingWithListing } from "@/lib/schema";
 import { headingStyles } from "@/lib/styles/heading-styles";
+import { calculateBookingDetails } from "@/lib/utils/calculate-booking-details";
 import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
 import { cn } from "@/lib/utils/shadcn-utils";
-import { differenceInCalendarDays, format, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 import Link from "next/link";
 import React from "react";
 
 type BookingInfoCardProps = {
   booking: TBookingWithListing;
-  className: string;
+  className?: string;
 };
 
 const BookingInfoCard = ({ booking, className, ...props }: BookingInfoCardProps) => {
@@ -24,8 +25,13 @@ const BookingInfoCard = ({ booking, className, ...props }: BookingInfoCardProps)
   const formattedDateTo = format(dateToParsed, formatStyle);
   const formattedCreatedDate = format(createdDateParsed, formatStyle);
 
-  const amountOfNights = differenceInCalendarDays(dateToParsed, dateFromParsed);
-  const total = venue.price * amountOfNights;
+  const { totalPrice } = calculateBookingDetails(
+    {
+      from: new Date(dateFromParsed),
+      to: new Date(dateToParsed)
+    },
+    venue.price
+  );
 
   return (
     <Card
@@ -59,11 +65,13 @@ const BookingInfoCard = ({ booking, className, ...props }: BookingInfoCardProps)
           </div>
           <div className="@xs:col-start-2 @xs:row-start-1 @md:col-start-auto @md:row-start-auto">
             <dt className={cn(headingStyles({ variant: "heading6" }))}>Guests</dt>
-            <dd>{guests} people</dd>
+            <dd>
+              {guests} {guests === 1 ? "person" : "people"}
+            </dd>
           </div>
           <div className="@xs:col-start-2 @xs:row-start-2 @md:col-start-auto @md:row-start-auto">
             <dt className={cn(headingStyles({ variant: "heading6" }))}>Total</dt>
-            <dd>${total}</dd>
+            <dd>${totalPrice}</dd>
           </div>
         </dl>
         <small className="mt-64 block text-sm text-muted-foreground">Booking id: {id}</small>
