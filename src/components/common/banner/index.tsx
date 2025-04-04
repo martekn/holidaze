@@ -12,6 +12,7 @@ type BannerProps = {
   type?: "highlight" | "minimal";
   isSection?: boolean;
   sectionInnerSpacing?: SectionStylesProps["innerSpacing"];
+  className?: string;
 };
 
 const Banner = ({
@@ -21,7 +22,8 @@ const Banner = ({
   headingOptions,
   body,
   isSection,
-  children
+  children,
+  className
 }: BannerProps) => {
   const isHighlight = type === "highlight";
   const defaultHeadingVariant = isHighlight ? "heading2" : "heading4";
@@ -37,7 +39,8 @@ const Banner = ({
           sectionStyles({
             variant: "disabled",
             innerSpacing: sectionInnerSpacing
-          })
+          }),
+        className
       )}
     >
       <div className={cn("max-w-prose text-center", isHighlight ? "space-y-16" : "space-y-8")}>
