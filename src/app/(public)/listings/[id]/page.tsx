@@ -103,12 +103,14 @@ const ListingPage = async ({
                 </div>
               </div>
             </Section>
-            <Section className="space-y-8 lg:space-y-24">
-              <Heading tag="h2" variant={"heading4"}>
-                Amenities
-              </Heading>
-              <Amenities amenitiesMeta={meta} />
-            </Section>
+            {(meta.parking || meta.pets || meta.breakfast || meta.wifi) && (
+              <Section className="space-y-8 lg:space-y-24">
+                <Heading tag="h2" variant={"heading4"}>
+                  Amenities
+                </Heading>
+                <Amenities amenitiesMeta={meta} />
+              </Section>
+            )}
             <Section className="space-y-8 lg:space-y-24">
               <Heading tag="h2" variant={"heading4"}>
                 Location
