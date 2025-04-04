@@ -1,19 +1,8 @@
 import React from "react";
-import { format, differenceInDays, isSameMonth, isSameYear } from "date-fns";
 import Link from "next/link";
 import { Card, CardImage, CardTitle } from "@/components/ui/card";
 import { TBaseListing } from "@/lib/schema";
-
-const getFormattedDate = (date: Date) => {
-  const currentDate = new Date();
-
-  const isOverAYearAgo = differenceInDays(currentDate, date) > 365;
-  const isSameMonthLastYear = isSameMonth(currentDate, date) && !isSameYear(currentDate, date);
-
-  const includeYear = isOverAYearAgo || isSameMonthLastYear;
-
-  return includeYear ? format(date, "MMMM do, yyyy") : format(date, "MMMM do");
-};
+import { getFormattedDate } from "@/lib/utils/get-formatted-date";
 
 type HostedListingCardProps = {
   listing: TBaseListing;
@@ -30,7 +19,7 @@ const HostedListingCard = ({ listing, ...props }: HostedListingCardProps) => {
       <div className="space-y-4">
         <span className="text-sm text-muted-foreground">Last updated {formattedDate}</span>
         <CardTitle asChild ellipse fullCardLink hoverEffect>
-          <Link href={`/listings/${id}`}>{name}</Link>
+          <Link href={`/profile/hosted-listings/${id}`}>{name}</Link>
         </CardTitle>
       </div>
     </Card>
