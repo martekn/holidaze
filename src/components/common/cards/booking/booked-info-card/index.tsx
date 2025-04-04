@@ -1,5 +1,5 @@
 import { Card, CardTitle } from "@/components/ui/card";
-import { TBookingWithListing } from "@/lib/schema";
+import { TBaseBooking, TBaseListing, TBaseUser } from "@/lib/schema";
 import { headingStyles } from "@/lib/styles/heading-styles";
 import { calculateBookingDetails } from "@/lib/utils/calculate-booking-details";
 import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
@@ -9,12 +9,25 @@ import Link from "next/link";
 import React from "react";
 
 type BookingInfoCardProps = {
-  booking: TBookingWithListing;
+  booking: TBaseBooking;
+  listing: TBaseListing;
+  customer?: TBaseUser;
+  variant: "guest-view" | "host-view";
   className?: string;
 };
 
-const BookingInfoCard = ({ booking, className, ...props }: BookingInfoCardProps) => {
-  const { venue, id, dateFrom, dateTo, guests, created } = booking;
+const BookingInfoCard = ({
+  booking,
+  listing,
+  customer,
+  variant = "guest-view",
+  className,
+  ...props
+}: BookingInfoCardProps) => {
+  const { dateFrom, dateTo, guests, created } = booking;
+  const { location, name, price } = listing;
+  const bookingID = booking.id;
+  const listingID = listing.id;
 
   const dateFromParsed = parseISO(dateFrom);
   const dateToParsed = parseISO(dateTo);
@@ -30,26 +43,26 @@ const BookingInfoCard = ({ booking, className, ...props }: BookingInfoCardProps)
       from: new Date(dateFromParsed),
       to: new Date(dateToParsed)
     },
-    venue.price
+    price
   );
 
   return (
-    <Card
-      variant={"outline"}
-      padding={"lg"}
-      asChild
-      className={cn("@container", className)}
-      {...props}
-    >
-      <article>
-        <header>
-          <CardTitle asChild hoverEffect>
-            <Link href={`/listings/${venue.id}`}>{venue.name}</Link>
-          </CardTitle>
-          <address className="font-normal not-italic">
-            {getFormattedAddress(venue.location)}
-          </address>
-        </header>
+    <Card variant="outline" padding={"lg"} asChild>
+      <article {...props} className={cn("@container", className)}>
+        {variant === "guest-view" && (
+          <header>
+            <CardTitle asChild hoverEffect>
+              <Link href={`/listings/${listingID}`}>{name}</Link>
+            </CardTitle>
+            <address className="font-normal not-italic">{getFormattedAddress(location)}</address>
+          </header>
+        )}
+        {variant === "host-view" && (
+          <header>
+            <CardTitle>{customer?.name || name}</CardTitle>
+            {customer?.email && <p className="font-normal not-italic">{customer.email}</p>}
+          </header>
+        )}
         <dl className="mt-24 grid gap-x-48 gap-y-16 @xs:grid-cols-2 @md:grid-cols-3 @2xl:grid-cols-5">
           <div className="@xs:col-start-1 @md:col-start-auto">
             <dt className={cn(headingStyles({ variant: "heading6" }))}>Date of Booking</dt>
@@ -74,7 +87,11 @@ const BookingInfoCard = ({ booking, className, ...props }: BookingInfoCardProps)
             <dd>${totalPrice}</dd>
           </div>
         </dl>
-        <small className="mt-64 block text-sm text-muted-foreground">Booking id: {id}</small>
+        {variant === "guest-view" && (
+          <small className="mt-64 block text-sm text-muted-foreground">
+            Booking id: {bookingID}
+          </small>
+        )}
       </article>
     </Card>
   );
