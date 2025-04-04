@@ -45,7 +45,7 @@ const BookingSuccessPage = async ({ params }: { params: { id: string } }) => {
           </p>
         </Section>
         <Section variant={"lg"}>
-          <BookingInfoCard booking={booking} className={""} />
+          <BookingInfoCard booking={booking} listing={booking.venue} variant="guest-view" />
         </Section>
       </main>
     </Container>

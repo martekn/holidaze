@@ -10,7 +10,7 @@ export type TBookingWithCustomer = z.infer<typeof bookingWithCustomerSchema>;
 
 // Listing with bookings
 export const listingWithBookingsSchema = baseListingSchema.extend({
-  bookings: z.array(baseBookingSchema),
+  bookings: z.array(bookingWithCustomerSchema),
   _count: z.object({
     bookings: z.number()
   })
