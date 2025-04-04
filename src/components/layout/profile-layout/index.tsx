@@ -14,10 +14,10 @@ const ProfileLayout = ({
   const currentPage = usePathname();
 
   return (
-    <Container className="grid flex-1 gap-64 lg:grid-cols-3 xl:grid-cols-4">
+    <Container className="grid flex-1 gap-64 lg:grid-cols-7 xl:grid-cols-4">
       <nav
         data-profile-layout
-        className="profile-layout-container w-full border-neutral-200 pt-0 shadow-lg shadow-neutral-700/50 max-lg:fixed max-lg:inset-x-0 max-lg:bottom-0 max-lg:border-t max-lg:border-neutral-300 max-lg:bg-neutral-100 lg:h-full lg:space-y-4 lg:border-r lg:pr-24 lg:pt-64 lg:shadow-none"
+        className="profile-layout-container w-full border-neutral-200 pt-0 shadow-lg shadow-neutral-700/50 max-lg:fixed max-lg:inset-x-0 max-lg:bottom-0 max-lg:z-50 max-lg:border-t max-lg:border-neutral-300 max-lg:bg-neutral-100 lg:col-span-2 lg:h-full lg:space-y-4 lg:border-r lg:pr-24 lg:pt-64 lg:shadow-none xl:col-span-1"
       >
         <Heading variant={"heading6"} tag="h2" className="max-lg:sr-only">
           Account
@@ -49,7 +49,7 @@ const ProfileLayout = ({
           })}
         </ul>
       </nav>
-      <main className="pb-64 pt-32 md:pb-128 md:pt-64 lg:col-span-2 xl:col-span-3">{children}</main>
+      <main className="pb-64 pt-32 md:pb-128 md:pt-64 lg:col-span-5 xl:col-span-3">{children}</main>
     </Container>
   );
 };
