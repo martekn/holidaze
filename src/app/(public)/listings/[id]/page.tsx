@@ -13,6 +13,7 @@ import BookingForm from "./components/booking-form";
 import Banner from "@/components/common/banner";
 import { notFound } from "next/navigation";
 import { getListingById, isListingResponse } from "@/lib/api/listings";
+import { LISTING_NAME_PLACEHOLDER } from "@/lib/constants";
 
 export const generateMetadata = async ({
   params
@@ -31,8 +32,10 @@ export const generateMetadata = async ({
   const listing = response.data;
 
   return {
-    title: `${listing.name} | Holidaze`,
-    description: listing.description
+    title: `${listing.name || LISTING_NAME_PLACEHOLDER} | Holidaze`,
+    description:
+      listing.description ||
+      "Discover this unique accommodation on Holidaze. Book your perfect getaway today."
   };
 };
 
@@ -82,7 +85,7 @@ const ListingPage = async ({
     <Container asChild>
       <main className="mb-128 space-y-24 pt-32 md:pt-64">
         <Heading tag="h1" variant={"heading2"}>
-          {name}
+          {name || LISTING_NAME_PLACEHOLDER}
         </Heading>
         <div className="grid lg:grid-cols-[2fr_1fr] lg:gap-48">
           {/* Left side */}
@@ -103,12 +106,14 @@ const ListingPage = async ({
                 </div>
               </div>
             </Section>
-            <Section className="space-y-8 lg:space-y-24">
-              <Heading tag="h2" variant={"heading4"}>
-                Amenities
-              </Heading>
-              <Amenities amenitiesMeta={meta} />
-            </Section>
+            {(meta.parking || meta.pets || meta.breakfast || meta.wifi) && (
+              <Section className="space-y-8 lg:space-y-24">
+                <Heading tag="h2" variant={"heading4"}>
+                  Amenities
+                </Heading>
+                <Amenities amenitiesMeta={meta} />
+              </Section>
+            )}
             <Section className="space-y-8 lg:space-y-24">
               <Heading tag="h2" variant={"heading4"}>
                 Location

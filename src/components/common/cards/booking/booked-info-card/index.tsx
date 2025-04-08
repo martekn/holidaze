@@ -1,4 +1,5 @@
 import { Card, CardTitle } from "@/components/ui/card";
+import { LISTING_NAME_PLACEHOLDER } from "@/lib/constants";
 import { TBaseBooking, TBaseListing, TBaseUser } from "@/lib/schema";
 import { headingStyles } from "@/lib/styles/heading-styles";
 import { calculateBookingDetails } from "@/lib/utils/calculate-booking-details";
@@ -52,14 +53,14 @@ const BookingInfoCard = ({
         {variant === "guest-view" && (
           <header>
             <CardTitle asChild hoverEffect>
-              <Link href={`/listings/${listingID}`}>{name}</Link>
+              <Link href={`/listings/${listingID}`}>{name || LISTING_NAME_PLACEHOLDER}</Link>
             </CardTitle>
             <address className="font-normal not-italic">{getFormattedAddress(location)}</address>
           </header>
         )}
         {variant === "host-view" && (
           <header>
-            <CardTitle>{customer?.name || name}</CardTitle>
+            <CardTitle>{customer?.name || name || LISTING_NAME_PLACEHOLDER}</CardTitle>
             {customer?.email && <p className="font-normal not-italic">{customer.email}</p>}
           </header>
         )}

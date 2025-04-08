@@ -4,6 +4,7 @@ import Container from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import Section from "@/components/ui/section";
 import { getBookingById } from "@/lib/api/bookings";
+import { LISTING_NAME_PLACEHOLDER } from "@/lib/constants";
 import { IconCircleCheckFilled } from "@tabler/icons-react";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -40,8 +41,8 @@ const BookingSuccessPage = async ({ params }: { params: { id: string } }) => {
           </Heading>
           <p>
             Thank you for your booking. We are thrilled to confirm your reservation to{" "}
-            {booking.venue.name}. A detailed confirmation email with check-in instructions will
-            arrive in your inbox shortly.
+            {booking.venue.name || LISTING_NAME_PLACEHOLDER}. A detailed confirmation email with
+            check-in instructions will arrive in your inbox shortly.
           </p>
         </Section>
         <Section variant={"lg"}>

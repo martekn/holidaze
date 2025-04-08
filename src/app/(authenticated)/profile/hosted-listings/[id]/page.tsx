@@ -23,6 +23,7 @@ import {
   TableRow
 } from "@/components/ui/table";
 import { format, parseISO } from "date-fns";
+import { LISTING_NAME_PLACEHOLDER } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Manage Bookings | Holidaze",
@@ -81,7 +82,7 @@ const HostedListingDetailPage = async ({ params }: { params: { id: string } }) =
       <div className="grid gap-24 md:grid-cols-[1fr_auto]">
         <div>
           <Heading tag="h1" variant={"heading2"}>
-            {name}
+            {name || LISTING_NAME_PLACEHOLDER}
           </Heading>
           <p className="text-sm text-muted-foreground">Last updated {formattedDate}</p>
         </div>

@@ -29,6 +29,7 @@ import React, { useState } from "react";
 import { DateRange } from "react-day-picker";
 import { useForm } from "react-hook-form";
 import { revalidateBookingForm } from "../actions";
+import { LISTING_NAME_PLACEHOLDER } from "@/lib/constants";
 
 const generateGoBackHref = (id: string, from?: Date, to?: Date, guests?: number) => {
   const params = new URLSearchParams();
@@ -133,7 +134,7 @@ const BookingForm = ({
       <div className="space-y-24">
         <div className="space-y-8">
           <Heading tag="h1" variant={"heading2"}>
-            Book {listing.name}
+            Book {listing.name || LISTING_NAME_PLACEHOLDER}
           </Heading>
           <p className="text-muted-foreground">
             Please fill out the form to make your reservation and pay for the stay

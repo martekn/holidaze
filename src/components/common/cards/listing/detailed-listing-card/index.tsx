@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils/shadcn-utils";
 import { TBaseListing } from "@/lib/schema";
 import { getFormattedAddress } from "@/lib/utils/get-formatted-address";
 import Amenities from "@/components/ui/amenities";
+import { LISTING_NAME_PLACEHOLDER } from "@/lib/constants";
 
 type DetailedListingCardProps = {
   listing: TBaseListing;
@@ -28,8 +29,8 @@ const DetailedListingCard = ({ listing, className }: DetailedListingCardProps) =
     >
       <div className="relative col-span-full w-full pb-[66%] @lg/card:col-span-1">
         <CardImage
-          src={media[0].url}
-          alt={media[0].alt}
+          src={media[0]?.url}
+          alt={media[0]?.alt}
           scaleOnHover
           rounded={"none"}
           className="absolute inset-0"
@@ -40,7 +41,7 @@ const DetailedListingCard = ({ listing, className }: DetailedListingCardProps) =
           <div className="mb-16 flex justify-between gap-16">
             <div>
               <CardTitle asChild ellipse fullCardLink hoverEffect>
-                <Link href={`/listings/${id}`}>{name}</Link>
+                <Link href={`/listings/${id}`}>{name || LISTING_NAME_PLACEHOLDER}</Link>
               </CardTitle>
               <span className="text-sm text-muted-foreground">{address}</span>
             </div>
