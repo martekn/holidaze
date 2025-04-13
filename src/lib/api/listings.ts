@@ -109,7 +109,6 @@ export const updateListing = async (id: string, data: baseListingData) => {
       method: "PUT",
       requireAuth: true
     });
-    console.log("update", response);
     revalidatePath(`/profile/hosted-listings`);
 
     const validated = apiListingDataSchema.safeParse(response);
@@ -128,7 +127,6 @@ export const deleteListing = async (id: string) => {
       method: "DELETE",
       requireAuth: true
     });
-    console.log("delete", response, "end");
 
     if (!response) return null;
 
