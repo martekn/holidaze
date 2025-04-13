@@ -14,6 +14,7 @@ import { toast } from "@/components/ui/sonner";
 import { updateUser } from "@/lib/api/user";
 import { API_AVATAR_PLACEHOLDER } from "@/lib/constants";
 import { TUserWithVenueManager } from "@/lib/schema";
+import { isValidUrl } from "@/lib/utils/is-valid-url";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import React, { useEffect, useState } from "react";
@@ -25,17 +26,6 @@ const avatarSchema = z.object({
 });
 
 export type avatarFormData = z.infer<typeof avatarSchema>;
-
-const isValidUrl = (url: string | null | undefined): boolean => {
-  if (!url) return false;
-
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-};
 
 type AvatarFormProps = {
   user: TUserWithVenueManager | null;
