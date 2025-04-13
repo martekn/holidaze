@@ -81,7 +81,7 @@ const HostedListingDetailPage = async ({ params }: { params: { id: string } }) =
       </Link>
       <div className="grid gap-24 md:grid-cols-[1fr_auto]">
         <div>
-          <Heading tag="h1" variant={"heading2"}>
+          <Heading tag="h1" variant={"heading2"} className="break-text">
             {name || LISTING_NAME_PLACEHOLDER}
           </Heading>
           <p className="text-sm text-muted-foreground">Last updated {formattedDate}</p>
@@ -90,7 +90,7 @@ const HostedListingDetailPage = async ({ params }: { params: { id: string } }) =
           <Link href={`/listings/${listingID}`} variant={"outline"}>
             View listing
           </Link>
-          <Link href={`/listings/${listingID}/edit`}>Edit listing</Link>
+          <Link href={`/listings/${listingID}/form`}>Edit listing</Link>
         </div>
       </div>
       <ul className="grid gap-24 md:grid-cols-3">

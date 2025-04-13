@@ -12,3 +12,5 @@ export const API_AVATAR_PLACEHOLDER =
   "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
 
 export const LISTING_NAME_PLACEHOLDER = "Untitled stay";
+
+export const API_MAX_IMAGES = 10;

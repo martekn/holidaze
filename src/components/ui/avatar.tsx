@@ -23,13 +23,13 @@ const Avatar = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>, A
         {...props}
       >
         <AvatarPrimitive.Image
-          className={"aspect-square h-full w-full"}
+          className={"aspect-square h-full w-full object-cover"}
           src={isPlaceholder ? "/images/avatar-placeholder.jpg" : src}
           alt={isPlaceholder ? "" : alt}
         />
         <AvatarPrimitive.Fallback
           ref={ref}
-          className="flex h-full w-full items-center justify-center rounded-md bg-secondary-100"
+          className="flex h-full w-full items-center justify-center rounded-md bg-secondary-100 object-cover"
         >
           <IconUserFilled className="h-1/2 w-1/2 text-secondary-300" />
         </AvatarPrimitive.Fallback>

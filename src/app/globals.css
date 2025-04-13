@@ -86,3 +86,10 @@
     @apply bg-background font-base font-normal text-foreground;
   }
 }
+
+@layer utilities {
+  .break-text {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
