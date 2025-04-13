@@ -35,7 +35,7 @@ const HostedListingsPage = async ({ searchParams }: { searchParams: { page: stri
         <Heading tag="h1" variant={"heading2"}>
           Hosted listings
         </Heading>
-        <Link href="/listings/create">Create listing</Link>
+        <Link href="/listings/create/form">Create listing</Link>
         <Banner
           className="col-span-full"
           type={"minimal"}
@@ -59,7 +59,7 @@ const HostedListingsPage = async ({ searchParams }: { searchParams: { page: stri
       <Heading tag="h1" variant={"heading2"}>
         Hosted listings
       </Heading>
-      {listings.length > 0 && <Link href="/listings/create">Create listing</Link>}
+      {listings.length > 0 && <Link href="/listings/create/form">Create listing</Link>}
       <div className="col-span-full space-y-48">
         {listings.length > 0 && (
           <ul className="grid gap-16 xs:grid-cols-2 md:grid-cols-3 md:gap-24">
@@ -79,7 +79,7 @@ const HostedListingsPage = async ({ searchParams }: { searchParams: { page: stri
             title="No Listings Yet"
             body="You haven’t created any listings yet. Start hosting travelers and turn your space into an income opportunity."
           >
-            <Link href="/listings/create">Create listing</Link>
+            <Link href="/listings/create/form">Create listing</Link>
           </Banner>
         )}
         {totalPages > 1 && listings.length > 0 && (
