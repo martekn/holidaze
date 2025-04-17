@@ -8,15 +8,9 @@ type DateRangeFieldProps = {
   date: DateRange | undefined | null;
   borderStyle?: InputStylesProps["borderStyle"];
   placeholder?: string;
-  isFloating?: boolean;
 };
 
-const DateRangeField = ({
-  date,
-  borderStyle,
-  isFloating = false,
-  placeholder
-}: DateRangeFieldProps) => {
+const DateRangeField = ({ date, borderStyle, placeholder }: DateRangeFieldProps) => {
   return (
     <span className={cn(inputWrapperStyles, "block w-full")}>
       <IconCalendar className={cn(inputIconStyles)} />
@@ -35,14 +29,7 @@ const DateRangeField = ({
             format(date.from, "LLL dd, y")
           )
         ) : (
-          <span
-            className={cn(
-              "font-normal text-transparent group-data-[state='open']/floating-label-input:text-muted-foreground",
-              !isFloating && "text-muted-foreground"
-            )}
-          >
-            {placeholder || "Pick a date"}
-          </span>
+          <span className={cn("font-normal text-transparent")}>{placeholder || "Pick a date"}</span>
         )}
       </span>
     </span>

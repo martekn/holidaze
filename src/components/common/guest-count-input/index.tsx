@@ -1,5 +1,4 @@
 import React from "react";
-import { FloatingLabelInput } from "../floating-label-input";
 import { Button } from "@/components/ui/button";
 import { IconMinus, IconPlus, IconUsers } from "@tabler/icons-react";
 import { Input } from "@/components/ui/input";
@@ -7,8 +6,6 @@ import { InputStylesProps } from "@/lib/styles";
 
 interface GuestCountInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> {
-  isFloating?: boolean;
-  label?: string;
   borderStyle?: InputStylesProps["borderStyle"];
   id: string;
   maxGuests?: number;
@@ -17,7 +14,7 @@ interface GuestCountInputProps
 }
 
 const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>(
-  ({ isFloating = false, maxGuests, label, id, value, onChange, borderStyle, ...props }, ref) => {
+  ({ maxGuests, id, value, onChange, borderStyle, ...props }, ref) => {
     const maxValue = maxGuests ?? 100;
     const handleGuestIncrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
@@ -33,30 +30,16 @@ const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>
 
     return (
       <div className="relative">
-        {isFloating ? (
-          <FloatingLabelInput
-            {...props}
-            id={id}
-            ref={ref}
-            type="number"
-            borderStyle={borderStyle}
-            label={label ?? ""}
-            icon={IconUsers}
-            readOnly
-            value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}
-          />
-        ) : (
-          <Input
-            {...props}
-            id={id}
-            ref={ref}
-            type="text"
-            borderStyle={borderStyle}
-            icon={IconUsers}
-            readOnly
-            value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}
-          />
-        )}
+        <Input
+          {...props}
+          id={id}
+          ref={ref}
+          type="text"
+          borderStyle={borderStyle}
+          icon={IconUsers}
+          readOnly
+          value={value ? `${value} guest${value > 1 ? "s" : ""}` : ""}
+        />
         <div className="absolute right-16 top-1/2 flex -translate-y-1/2 items-center space-x-4">
           <Button
             variant="ghost"

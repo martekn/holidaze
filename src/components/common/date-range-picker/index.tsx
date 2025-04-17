@@ -7,7 +7,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { cn } from "@/lib/utils/shadcn-utils";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { floatingWrapperStyles, formItemVariants, InputStylesProps } from "@/lib/styles";
+import { formItemVariants, InputStylesProps } from "@/lib/styles";
 import { DateRangeField } from "./date-range-field";
 import { DateRangeLabel } from "./date-range-label";
 import { useState } from "react";
@@ -15,7 +15,6 @@ import { useState } from "react";
 interface RangeDatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   borderStyle?: InputStylesProps["borderStyle"];
   label?: string;
-  isFloating?: boolean;
   placeholder?: string;
   bookedDates?: DateRange[];
   value?: DateRange | undefined | null;
@@ -24,7 +23,6 @@ interface RangeDatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>
 
 export function DateRangePicker({
   className,
-  isFloating = false,
   label,
   placeholder,
   borderStyle,
@@ -43,22 +41,16 @@ export function DateRangePicker({
           <button
             id={"test"}
             className={cn(
-              floatingWrapperStyles,
               "justify-start bg-background text-left font-normal focus-visible:outline-none"
             )}
           >
-            <span className={cn(formItemVariants(), "relative", isFloating && "space-y-0")}>
+            <span className={cn(formItemVariants(), "relative")}>
               {label && (
-                <DateRangeLabel isFloating={isFloating} date={value} isOpen={open}>
+                <DateRangeLabel date={value} isOpen={open}>
                   {label}
                 </DateRangeLabel>
               )}
-              <DateRangeField
-                isFloating={isFloating}
-                date={value}
-                placeholder={placeholder}
-                borderStyle={borderStyle}
-              />
+              <DateRangeField date={value} placeholder={placeholder} borderStyle={borderStyle} />
             </span>
           </button>
         </PopoverTrigger>
