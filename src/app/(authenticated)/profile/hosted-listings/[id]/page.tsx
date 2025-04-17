@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/table";
 import { format, parseISO } from "date-fns";
 import { LISTING_NAME_PLACEHOLDER } from "@/lib/constants";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: "Manage Bookings | Holidaze",
@@ -90,7 +92,24 @@ const HostedListingDetailPage = async ({ params }: { params: { id: string } }) =
           <Link href={`/listings/${listingID}`} variant={"outline"}>
             View listing
           </Link>
-          <Link href={`/listings/${listingID}/form`}>Edit listing</Link>
+          {user.venueManager ? (
+            <Link href={`/listings/${listingID}/form`}>Edit listing</Link>
+          ) : (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="inline-block">
+                    <Button disabled className="cursor-not-allowed">
+                      Edit listing
+                    </Button>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Unable to edit listing as guest account</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
         </div>
       </div>
       <ul className="grid gap-24 md:grid-cols-3">
