@@ -20,7 +20,9 @@ const HostedListingCard = ({ listing, ...props }: HostedListingCardProps) => {
       <div className="space-y-4">
         <span className="text-sm text-muted-foreground">Last updated {formattedDate}</span>
         <CardTitle asChild ellipse fullCardLink hoverEffect>
-          <Link href={`/profile/hosted-listings/${id}`}>{name || LISTING_NAME_PLACEHOLDER}</Link>
+          <Link href={`/profile/hosted-listings/${id}`} className="max-xs:break-all">
+            {name || LISTING_NAME_PLACEHOLDER}
+          </Link>
         </CardTitle>
       </div>
     </Card>

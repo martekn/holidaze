@@ -60,7 +60,7 @@ const HostedListingsPage = async ({ searchParams }: { searchParams: { page: stri
         Hosted listings
       </Heading>
       {listings.length > 0 && <Link href="/listings/create/form">Create listing</Link>}
-      <div className="col-span-full space-y-48">
+      <div className="space-y-48 xs:col-span-full">
         {listings.length > 0 && (
           <ul className="grid gap-16 xs:grid-cols-2 md:grid-cols-3 md:gap-24">
             {listings.map((listing) => (

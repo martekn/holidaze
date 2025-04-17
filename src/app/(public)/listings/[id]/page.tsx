@@ -84,7 +84,7 @@ const ListingPage = async ({
   return (
     <Container asChild>
       <main className="mb-128 space-y-24 pt-32 md:pt-64">
-        <Heading tag="h1" variant={"heading2"}>
+        <Heading tag="h1" variant={"heading2"} className="break-text">
           {name || LISTING_NAME_PLACEHOLDER}
         </Heading>
         <div className="grid lg:grid-cols-[2fr_1fr] lg:gap-48">
@@ -98,7 +98,7 @@ const ListingPage = async ({
                   About this stay
                 </Heading>
                 <div className="space-y-16">
-                  <p className="leading-7">{description}</p>
+                  <p className="break-text leading-7">{description}</p>
                   <p>
                     This stay allows for a maximum of{" "}
                     {`${maxGuests} guest${maxGuests === 1 ? "" : "s"}`}
@@ -118,7 +118,7 @@ const ListingPage = async ({
               <Heading tag="h2" variant={"heading4"}>
                 Location
               </Heading>
-              <p>{formatListingLocation(location)}</p>
+              <p className="break-text">{formatListingLocation(location)}</p>
             </Section>
           </div>
           {/* Right side */}

@@ -22,7 +22,9 @@ const ListingCard = ({ listing, ...props }: ListingCardProps) => {
       <CardImage ratio={5 / 3} src={media[0]?.url} alt={media[0]?.alt} scaleOnHover />
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-muted-foreground">{address}</span>
+          <span className="line-clamp-1 text-ellipsis text-sm text-muted-foreground">
+            {address}
+          </span>
           <Rating rating={rating} textPosition={"reverse"} textClassName="hidden @xs:block" />
         </div>
         <CardTitle asChild ellipse hoverEffect fullCardLink>
