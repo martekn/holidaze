@@ -26,9 +26,10 @@ import FormRadioAccountCard from "./components/form-radio-account-card";
 import { registerUser } from "@/lib/api/auth";
 import { z } from "zod";
 
-export const formRegisterSchema = baseUserRegistrationSchema.extend({
+const formRegisterSchema = baseUserRegistrationSchema.extend({
   venueManager: z.enum(["guest", "host"])
 });
+
 export type FormRegisterData = z.infer<typeof formRegisterSchema>;
 
 const RegisterPage = () => {
