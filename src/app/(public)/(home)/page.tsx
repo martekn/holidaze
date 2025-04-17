@@ -1,6 +1,6 @@
 import React from "react";
 import { Heading } from "@/components/ui/heading";
-import SearchForm from "./components/search-form";
+import SearchForm from "../../../components/common/search-form";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import { Carousel } from "./components/carousel";
@@ -45,12 +45,34 @@ const HomePage = async () => {
   return (
     <main>
       <h1 className="sr-only">Holidaze</h1>
-      <Container asChild>
-        <Section variant="lg" className="space-y-24">
-          <Heading tag="h2" variant="heading3">
-            Where do you want to go?
-          </Heading>
-          <SearchForm />
+      <Container>
+        <Section
+          variant="sm"
+          innerSpacing={"lg"}
+          className="relative flex min-h-[60vh] flex-col items-center justify-center gap-48 rounded-lg bg-[url(/images/hero-bg.jpg)] bg-cover bg-left-bottom bg-no-repeat px-24 text-center text-neutral-200"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-700/50 via-45% to-transparent"></div>
+
+          <div className="z-10 max-w-prose space-y-8">
+            <Heading tag="h2" variant="heading1" className="text-neutral-100">
+              Explore your dream stay
+            </Heading>
+            <p>
+              Discover handpicked stays for every taste, whether you seek a rustic retreat, a
+              beachside bungalow, or a stylish city apartment
+            </p>
+          </div>
+          <div className="z-10 grid w-full max-w-prose gap-4">
+            <SearchForm className="w-full" />
+            <Link
+              href="/explore"
+              variant={"linkInverted"}
+              size="custom"
+              className="place-self-start self-start text-sm"
+            >
+              Explore all stays
+            </Link>
+          </div>
         </Section>
       </Container>
       <Container asChild>

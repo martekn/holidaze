@@ -3,9 +3,9 @@ import React from "react";
 import Container from "@/components/ui/container";
 import { Link } from "@/components/ui/link";
 import UserDropdown from "./user-dropdown";
-import SearchDialog from "./search-dialog";
 import { cn } from "@/lib/utils/shadcn-utils";
 import { getUserData } from "@/lib/cookies/server";
+import SearchForm from "@/components/common/search-form";
 
 const Header = async ({ showSearch = true }) => {
   // This has to be awaited regardless of what ts is saying
@@ -26,7 +26,10 @@ const Header = async ({ showSearch = true }) => {
       >
         <Logo className="w-[5rem] sm:w-[7rem]" />
         {showSearch && (
-          <SearchDialog className="max-lg:absolute max-lg:inset-x-16 max-lg:top-full max-lg:-mt-4 lg:col-span-2 lg:w-[30rem] lg:justify-self-center" />
+          <SearchForm
+            variant="minimal"
+            className="max-lg:absolute max-lg:inset-x-16 max-lg:top-full max-lg:-mt-4 lg:col-span-2 lg:w-[30rem] lg:justify-self-center"
+          />
         )}
         {!isAuthenticated && (
           <div className="flex items-center gap-8 justify-self-end sm:gap-16">
