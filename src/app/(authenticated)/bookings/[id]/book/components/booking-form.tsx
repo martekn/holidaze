@@ -187,7 +187,6 @@ const BookingForm = ({
                       id="test"
                       borderStyle={"light"}
                       maxGuests={listing.maxGuests}
-                      label="Guests"
                     />
                   </FormItem>
                 )}
