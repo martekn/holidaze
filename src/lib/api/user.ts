@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { getAuthToken, getUserData, setUserData } from "../cookies/server";
 import { apiProfileResponseSchema, TUserWithVenueManager } from "../schema";
 import { apiFetch } from "../utils/api";
@@ -45,6 +46,6 @@ export const updateUser = async (data: Partial<TUserWithVenueManager>) => {
   if (!validated.success) {
     throw new Error("Invalid profile response schema");
   }
-
+  revalidatePath("/profile/hosted-listings");
   setUserData(validated.data.data);
 };
