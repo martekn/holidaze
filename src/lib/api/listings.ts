@@ -32,6 +32,25 @@ export const getListings = async (currentPage: number) => {
     return { errors: [{ message: "Unexpected error" }] };
   }
 };
+const apiListingsSearchSchema = paginatedApiResponseSchema.extend({
+  data: z.array(listingWithBookingsSchema)
+});
+
+export const getListingsSearch = async (currentPage: number, query: string) => {
+  try {
+    const response = await apiFetch(`/holidaze/venues/search`, {
+      query: { _bookings: true, page: currentPage, q: query }
+    });
+    const validated = apiListingsSearchSchema.safeParse(response);
+    if (validated.success) return validated.data;
+    return { errors: [{ message: "Invalid schema" }] };
+  } catch (error) {
+    const validated = baseErrorSchema.safeParse(error);
+    if (validated.success) return validated.data;
+    return { errors: [{ message: "Unexpected error" }] };
+  }
+};
+
 const apiListingSchema = baseApiResponseSchema.extend({ data: listingWithBookingsAndOwnerSchema });
 export type TApiListingData = z.infer<typeof apiListingSchema>;
 
