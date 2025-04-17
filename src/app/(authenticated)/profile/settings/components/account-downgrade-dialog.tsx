@@ -37,15 +37,14 @@ const AccountDowngradeDialog = () => {
         <div className="space-y-12">
           <p>Are you sure you want to downgrade to a guest account?</p>
           <ul className="list-inside list-disc space-y-8">
-            <li>
-              All host-related information, including your listings and their details, will be
-              permanently deleted.
-            </li>
-            <li>You will no longer be able to create or manage listings.</li>
+            <li>Your listings will not be deleted</li>
+            <li>You will no longer be able to update or delete an existing listings</li>
+            <li>You will no longer be able to create new listings.</li>
           </ul>
           <p>
-            If you upgrade to a host account again in the future, your previous history, listings,
-            and information will not be restored.
+            If you upgrade to a host account again in the future, you can delete or edit the
+            existing listings again. If you want to also remove the listings, do delete them before
+            downgrading.
           </p>
         </div>
       </ConfirmationDialogContent>

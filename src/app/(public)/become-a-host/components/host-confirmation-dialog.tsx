@@ -11,9 +11,9 @@ import React from "react";
 const HostConfirmationDialog = () => {
   const router = useRouter();
 
-  const onConfirmation = () => {
+  const onConfirmation = async () => {
     try {
-      updateUser({ venueManager: true });
+      await updateUser({ venueManager: true });
       toast({
         title: "Account upgraded",
         variant: "success",

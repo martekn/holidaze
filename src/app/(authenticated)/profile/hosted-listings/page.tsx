@@ -59,7 +59,9 @@ const HostedListingsPage = async ({ searchParams }: { searchParams: { page: stri
       <Heading tag="h1" variant={"heading2"}>
         Hosted listings
       </Heading>
-      {listings.length > 0 && <Link href="/listings/create/form">Create listing</Link>}
+      {listings.length > 0 && user.venueManager && (
+        <Link href="/listings/create/form">Create listing</Link>
+      )}
       <div className="space-y-48 xs:col-span-full">
         {listings.length > 0 && (
           <ul className="grid gap-16 xs:grid-cols-2 md:grid-cols-3 md:gap-24">
@@ -77,11 +79,20 @@ const HostedListingsPage = async ({ searchParams }: { searchParams: { page: stri
             sectionInnerSpacing={"sm"}
             isSection
             title="No Listings Yet"
-            body="You haven’t created any listings yet. Start hosting travelers and turn your space into an income opportunity."
+            body={
+              user.venueManager
+                ? "You haven’t created any listings yet. Start hosting travelers and turn your space into an income opportunity."
+                : "If you want to create listings, please read more about becoming a host by clicking the button below"
+            }
           >
-            <Link href="/listings/create/form">Create listing</Link>
+            {user.venueManager ? (
+              <Link href="/listings/create/form">Create listing</Link>
+            ) : (
+              <Link href="/become-a-host">Become a host</Link>
+            )}
           </Banner>
         )}
+
         {totalPages > 1 && listings.length > 0 && (
           <Paginator currentPage={currentPage} totalPages={totalPages} />
         )}
