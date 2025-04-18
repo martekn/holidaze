@@ -29,7 +29,7 @@ const DateRangeField = ({ date, borderStyle, placeholder }: DateRangeFieldProps)
             format(date.from, "LLL dd, y")
           )
         ) : (
-          <span className={cn("font-normal text-transparent")}>{placeholder || "Pick a date"}</span>
+          <span className={cn("font-normal")}>{placeholder || "Pick a date"}</span>
         )}
       </span>
     </span>
