@@ -53,9 +53,13 @@ const BookingInfoCard = ({
         {variant === "guest-view" && (
           <header>
             <CardTitle asChild hoverEffect>
-              <Link href={`/listings/${listingID}`}>{name || LISTING_NAME_PLACEHOLDER}</Link>
+              <Link className="break-text" href={`/listings/${listingID}`}>
+                {name || LISTING_NAME_PLACEHOLDER}
+              </Link>
             </CardTitle>
-            <address className="font-normal not-italic">{getFormattedAddress(location)}</address>
+            <address className="break-text font-normal not-italic">
+              {getFormattedAddress(location)}
+            </address>
           </header>
         )}
         {variant === "host-view" && (

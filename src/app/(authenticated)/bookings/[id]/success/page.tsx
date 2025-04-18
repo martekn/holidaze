@@ -39,7 +39,7 @@ const BookingSuccessPage = async ({ params }: { params: { id: string } }) => {
             <span>Booking confirmed</span>{" "}
             <IconCircleCheckFilled className="h-32 w-32 text-alert-success" />
           </Heading>
-          <p>
+          <p className="break-text">
             Thank you for your booking. We are thrilled to confirm your reservation to{" "}
             {booking.venue.name || LISTING_NAME_PLACEHOLDER}. A detailed confirmation email with
             check-in instructions will arrive in your inbox shortly.
