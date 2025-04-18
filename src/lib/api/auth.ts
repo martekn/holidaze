@@ -52,4 +52,5 @@ export const registerUser = async (data: TApiRegistrationRequest, redirectPath?:
 
 export const logoutUser = () => {
   clearAllAuthCookies();
+  redirect("/");
 };
