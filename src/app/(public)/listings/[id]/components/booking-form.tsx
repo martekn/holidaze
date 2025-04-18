@@ -95,7 +95,7 @@ const BookingForm = ({
   return (
     <>
       {!isFormVisible && (
-        <div className="fixed inset-x-0 bottom-0 z-10 flex w-full items-center justify-between border-t bg-neutral-100 p-16 shadow-md">
+        <div className="fixed inset-x-0 bottom-0 z-10 flex w-full items-center justify-between border-t bg-neutral-100 p-16 shadow-md lg:hidden">
           <Price price={listing.price} variant={"lg"} />
           <Button onClick={onButtonScroll}>Book</Button>
         </div>
