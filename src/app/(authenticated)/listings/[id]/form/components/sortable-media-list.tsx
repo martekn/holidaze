@@ -5,9 +5,9 @@ import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { FormItem } from "@/components/ui/form";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import { AutosizeTextarea } from "../../../../../../components/common/autosize-textarea";
 import { TMedia } from "@/lib/schema";
+import { Label } from "@/components/ui/label";
 
 type MediaWithID = TMedia & { id: string };
 type SortableListProps = {
@@ -47,6 +47,7 @@ const SortableMediaList = ({ media, onChange, onDelete }: SortableListProps) => 
                 onClick={() => moveItem(index, "up")}
                 disabled={index === 0}
               >
+                <span className="sr-only">Move up</span>
                 <IconChevronUp className="h-20 w-20" />
               </Button>
               <Button
@@ -56,6 +57,7 @@ const SortableMediaList = ({ media, onChange, onDelete }: SortableListProps) => 
                 onClick={() => moveItem(index, "down")}
                 disabled={index === media.length - 1}
               >
+                <span className="sr-only">Move down</span>
                 <IconChevronDown className="h-20 w-20" />
               </Button>
             </div>
@@ -67,9 +69,10 @@ const SortableMediaList = ({ media, onChange, onDelete }: SortableListProps) => 
                 </AspectRatio>
               </div>
               <FormItem className="w-full">
-                <Label>Description</Label>
+                <Label htmlFor={`${image.id}-alt`}>Description</Label>
                 <AutosizeTextarea
                   value={image.alt}
+                  id={`${image.id}-alt`}
                   onChange={(e) => {
                     const newMedia = [...media];
                     newMedia[index].alt = e.target.value;

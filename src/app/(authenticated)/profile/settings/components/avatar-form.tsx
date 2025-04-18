@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Form,
+  FormControl,
   FormDescription,
   FormField,
   FormItem,
@@ -84,12 +85,14 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
               <FormLabel>Image url</FormLabel>
               <div className="flex gap-8 max-sm:flex-col">
                 <div className="relative flex-1">
-                  <Input
-                    placeholder="Paste image URL here.."
-                    type="url"
-                    {...field}
-                    className="pr-64"
-                  />
+                  <FormControl addDescribedBy>
+                    <Input
+                      placeholder="Paste image URL here.."
+                      type="url"
+                      {...field}
+                      className="pr-64"
+                    />
+                  </FormControl>
                   <div className="absolute inset-y-4 right-4 w-40 overflow-hidden rounded-md">
                     <ImageWithFallback
                       src={avatar || "/images/avatar-placeholder.jpg"}

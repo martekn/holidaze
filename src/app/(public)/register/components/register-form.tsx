@@ -99,7 +99,7 @@ const RegisterForm = () => {
               name="venueManager"
               render={({ field }) => (
                 <FormItem>
-                  <FormControl>
+                  <FormControl addDescribedBy>
                     <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
                       <FormRadioAccountCard
                         value="guest"
@@ -122,15 +122,15 @@ const RegisterForm = () => {
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
+                  <FormDescription>
+                    You can change your account type later.{" "}
+                    <Link href="/become-a-host" variant={"link"} size="custom" className="text-sm">
+                      Learn about hosting
+                    </Link>
+                  </FormDescription>
                 </FormItem>
               )}
             />
-            <FormDescription>
-              You can change your account type later.{" "}
-              <Link href="/become-a-host" variant={"link"} size="custom" className="text-sm">
-                Learn about hosting
-              </Link>
-            </FormDescription>
           </Fieldset>
           <FormField
             control={form.control}

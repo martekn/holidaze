@@ -243,6 +243,7 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
             {isEditForm && (
               <Button size={"icon"} variant={"outline"} type="button" onClick={handleDeleteListing}>
                 <IconTrash />
+                <span className="sr-only">Delete</span>
               </Button>
             )}
           </header>
@@ -269,7 +270,9 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem className="col-span-full">
                   <FormLabel>Title</FormLabel>
-                  <Input {...field} />
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -280,7 +283,9 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem className="col-span-full">
                   <FormLabel>Description</FormLabel>
-                  <Textarea {...field} className="min-h-[10rem]" />
+                  <FormControl>
+                    <Textarea {...field} className="min-h-[10rem]" />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -291,12 +296,14 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Price per night, in dollars</FormLabel>
-                  <Input
-                    type="number"
-                    {...field}
-                    onChange={(e) => field.onChange(+e.target.value)}
-                    value={field.value}
-                  />
+                  <FormControl>
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => field.onChange(+e.target.value)}
+                      value={field.value}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -307,12 +314,14 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Max guests</FormLabel>
-                  <Input
-                    type="number"
-                    {...field}
-                    onChange={(e) => field.onChange(+e.target.value)}
-                    value={field.value}
-                  />
+                  <FormControl>
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => field.onChange(+e.target.value)}
+                      value={field.value}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -389,7 +398,9 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem className="col-span-full">
                   <FormLabel>Address</FormLabel>
-                  <Input {...field} />
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -400,7 +411,9 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>City</FormLabel>
-                  <Input {...field} />
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -411,7 +424,9 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Zip / Postal</FormLabel>
-                  <Input {...field} />
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -422,7 +437,9 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
               render={({ field }) => (
                 <FormItem className="max-md:col-span-full">
                   <FormLabel>Country</FormLabel>
-                  <Input {...field} />
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -437,12 +454,14 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
             <FormItem>
               <FormLabel>Image url</FormLabel>
               <div className="flex gap-16">
-                <Input
-                  className="flex-1"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  onKeyDown={handleKeyPress}
-                />
+                <FormControl>
+                  <Input
+                    className="flex-1"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                  />
+                </FormControl>
                 <Button
                   variant={"outline"}
                   className="h-full"

@@ -182,12 +182,13 @@ const BookingForm = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Guests</FormLabel>
-                    <GuestCountInput
-                      {...field}
-                      id="test"
-                      borderStyle={"light"}
-                      maxGuests={listing.maxGuests}
-                    />
+                    <FormControl>
+                      <GuestCountInput
+                        {...field}
+                        borderStyle={"light"}
+                        maxGuests={listing.maxGuests}
+                      />
+                    </FormControl>
                   </FormItem>
                 )}
               />

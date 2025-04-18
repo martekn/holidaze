@@ -7,14 +7,13 @@ import { InputStylesProps } from "@/lib/styles";
 interface GuestCountInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> {
   borderStyle?: InputStylesProps["borderStyle"];
-  id: string;
   maxGuests?: number;
   value: number | undefined;
   onChange: (value: number | undefined) => void;
 }
 
 const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>(
-  ({ maxGuests, id, value, onChange, borderStyle, ...props }, ref) => {
+  ({ maxGuests, value, onChange, borderStyle, ...props }, ref) => {
     const maxValue = maxGuests ?? 100;
     const handleGuestIncrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
@@ -32,7 +31,6 @@ const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>
       <div className="relative">
         <Input
           {...props}
-          id={id}
           ref={ref}
           type="text"
           borderStyle={borderStyle}
@@ -49,6 +47,7 @@ const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>
             disabled={value === undefined || value <= 1}
           >
             <IconMinus className="h-16 w-16" />
+            <span className="sr-only">Minus</span>
           </Button>
           <Button
             variant="ghost"
@@ -58,6 +57,7 @@ const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>
             disabled={value === maxValue}
           >
             <IconPlus className="h-16 w-16" />
+            <span className="sr-only">Plus</span>
           </Button>
         </div>
       </div>
