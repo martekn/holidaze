@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Holidaze
+
+Holidaze is an accommodation booking platform I developed as part of my Project Exam 2. The site features both customer-facing booking functionality and venue management capabilities for registered users, built according to the Noroff API specifications.
+
+## Features
+
+This Airbnb-style platform was created with the following feature requirements
+
+#### Customer Features:
+
+- Browse and search venues
+- View venue details and availability calendars
+- Register and book accommodations
+- Manage personal bookings and profile
+
+#### Venue Manager Features:
+
+- Create and manage venues
+- Handle bookings for owned properties
+- Update venue details and media
+
+## Built With
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind](https://v3.tailwindcss.com/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Shadcn](https://ui.shadcn.com/)
+- [Zod](https://zod.dev/)
 
 ## Getting Started
 
-First, run the development server:
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com:martekn/holidaze.git
+```
+
+2. Install the dependencies:
+
+```
+npm install
+```
+
+### Running
+
+To run the app, run the following commands:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+If you have any feedback or suggestions to make the project better, please fork the repo and create a pull request.
 
-## Learn More
+## Contact
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can contact me on [linkedIn](https://www.linkedin.com/in/martekn/) or send an email to marte.mk@hotmail.com
