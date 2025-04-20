@@ -100,7 +100,7 @@ const LoginForm = () => {
           <div className="text-muted-foreground">
             <span>Dont have an account?</span>{" "}
             <Link
-              href={redirectTo ? `/register?next=${redirectTo}` : "/register"}
+              href={redirectTo ? `/register?next=${encodeURIComponent(redirectTo)}` : "/register"}
               variant={"link"}
               size="custom"
             >

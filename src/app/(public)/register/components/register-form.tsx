@@ -177,7 +177,7 @@ const RegisterForm = () => {
           <div className="text-muted-foreground">
             <span>Already have an account?</span>{" "}
             <Link
-              href={redirectTo ? `/login?next=${redirectTo}` : "/login"}
+              href={redirectTo ? `/login?next=${encodeURIComponent(redirectTo)}` : "/login"}
               variant={"link"}
               size="custom"
             >

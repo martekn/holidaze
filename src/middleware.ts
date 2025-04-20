@@ -24,7 +24,9 @@ export async function middleware(request: NextRequest) {
 
   if (isAuthenticatedRoute && !isAuthenticated) {
     const fullUrl = path + request.nextUrl.search;
-    return NextResponse.redirect(new URL(`/login?next=${fullUrl}`, request.nextUrl));
+    return NextResponse.redirect(
+      new URL(`/login?next=${encodeURIComponent(fullUrl)}`, request.nextUrl)
+    );
   }
 
   if (isPublicOnlyRoute && isAuthenticated) {
