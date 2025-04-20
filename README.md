@@ -43,6 +43,24 @@ git clone git@github.com:martekn/holidaze.git
 npm install
 ```
 
+### Environment Variable Setup
+
+To run the application, you only need to set up the `API_KEY` variable.
+
+#### 1. Copy `.env.example`
+
+Copy the contents of the `.env.example` file into a new file named `.env`.
+
+#### 2. Generate API Key
+
+Visit the [Noroff API Documentation](https://docs.noroff.dev/docs/v2/auth/api-key) to learn how to generate an API key.
+
+#### 3. Environment Variables
+
+Fill out the following environment variables in the `.env` file:
+
+- `API_KEY`: Your API key generated from Noroff.
+
 ### Running
 
 To run the app, run the following commands:
