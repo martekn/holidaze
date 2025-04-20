@@ -58,6 +58,7 @@ const BookingForm = ({
   };
 }) => {
   const [errors, setErrors] = useState<TBaseError["errors"]>([]);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const bookedDates = getBookedDates(listing.bookings);
   const bookingFormSchema = getBookingFormSchema(listing.maxGuests);
@@ -75,6 +76,9 @@ const BookingForm = ({
   });
 
   const onSubmit = async (data: TBookingFormData) => {
+    if (loading) return;
+
+    setLoading(true);
     setErrors([]);
     if (!data.dateRange.from || !data.dateRange.to) {
       setErrors([{ message: "Check in and checkout dates are required" }]);
@@ -103,6 +107,7 @@ const BookingForm = ({
         ]);
         revalidateBookingForm(listing.id);
         form.setValue("dateRange", { from: undefined, to: undefined });
+        setLoading(false);
         return;
       }
 
@@ -115,6 +120,7 @@ const BookingForm = ({
     } catch (error) {
       console.error(error);
       setErrors([{ message: "Unexpected error occurred, please try again" }]);
+      setLoading(false);
     }
   };
 
@@ -209,6 +215,7 @@ const BookingForm = ({
                 )}
               </div>
               <Button
+                loading={loading}
                 type="submit"
                 className="justify-self-end"
                 disabled={!dateRange.to || !dateRange.from}

@@ -23,7 +23,7 @@ import { loginUser } from "@/lib/api/auth";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState<TBaseError["errors"]>([]);
-
+  const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("next");
   const form = useForm<TApiLoginRequest>({
@@ -32,6 +32,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: TApiLoginRequest) => {
+    setLoading(true);
     setErrors([]);
     try {
       const response = await loginUser(data, redirectTo);
@@ -50,6 +51,7 @@ const LoginForm = () => {
         }
       ]);
     }
+    setLoading(false);
   };
 
   return (
@@ -96,7 +98,9 @@ const LoginForm = () => {
           />
         </div>
         <div className="space-y-8">
-          <Button className="w-full">Log in</Button>
+          <Button loading={loading} className="w-full">
+            Log in
+          </Button>
           <div className="text-muted-foreground">
             <span>Dont have an account?</span>{" "}
             <Link

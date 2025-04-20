@@ -57,6 +57,7 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
   const router = useRouter();
 
   const [errors, setErrors] = useState<TBaseError["errors"]>([]);
+  const [loading, setLoading] = useState(false);
   const isEditForm = variant === "edit";
 
   const cancelLink = `/profile/hosted-listings${isEditForm ? `/${listing?.id}` : ""}`;
@@ -107,6 +108,7 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
   const media = form.watch("media");
 
   const onSubmit = async (data: ListingFormData) => {
+    setLoading(true);
     setErrors([]);
 
     const formattedData = {
@@ -150,6 +152,7 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
         }
       ]);
     }
+    setLoading(false);
   };
 
   const [imageUrl, setImageUrl] = useState("");
@@ -491,7 +494,7 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
             <Link href={cancelLink} variant={"outline"}>
               Cancel
             </Link>
-            <Button>Publish</Button>
+            <Button loading={loading}>Publish</Button>
           </div>
         </form>
       </Form>

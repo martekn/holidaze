@@ -34,6 +34,7 @@ export type FormRegisterData = z.infer<typeof formRegisterSchema>;
 
 const RegisterForm = () => {
   const [errors, setErrors] = useState<TBaseError["errors"]>([]);
+  const [loading, setLoading] = useState(false);
 
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("next");
@@ -55,6 +56,7 @@ const RegisterForm = () => {
   const accountType = useWatch({ control: form.control, name: "venueManager" });
 
   const onSubmit = async (data: FormRegisterData) => {
+    setLoading(true);
     setErrors([]);
     const venueManager = data.venueManager === "host";
 
@@ -75,6 +77,7 @@ const RegisterForm = () => {
         }
       ]);
     }
+    setLoading(false);
   };
 
   return (
@@ -173,7 +176,9 @@ const RegisterForm = () => {
           />
         </div>
         <div className="space-y-8">
-          <Button className="w-full">Create account</Button>
+          <Button loading={loading} className="w-full">
+            Create account
+          </Button>
           <div className="text-muted-foreground">
             <span>Already have an account?</span>{" "}
             <Link

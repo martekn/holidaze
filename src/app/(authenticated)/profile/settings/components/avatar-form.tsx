@@ -36,6 +36,7 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
   const isApiPlaceholder = user?.avatar.url === API_AVATAR_PLACEHOLDER;
   const initialAvatar = isApiPlaceholder ? "" : user?.avatar.url;
   const [avatar, setAvatar] = useState(initialAvatar);
+  const [loading, setLoading] = useState(false);
   const form = useForm<avatarFormData>({
     resolver: zodResolver(avatarSchema),
     defaultValues: {
@@ -47,6 +48,7 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
   const url = form.watch("url");
 
   const onSubmit = async (data: avatarFormData) => {
+    setLoading(true);
     try {
       await updateUser({
         avatar: { url: data.url || API_AVATAR_PLACEHOLDER, alt: "" }
@@ -64,6 +66,7 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
         children: "Please double check the image url and try again."
       });
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -105,6 +108,7 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
                 </div>
                 <FormMessage className="sm:hidden" />
                 <Button
+                  loading={loading}
                   className="h-full"
                   disabled={(!!url && !isValidUrl(url)) || url === user?.avatar.url}
                 >
