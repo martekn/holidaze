@@ -85,7 +85,7 @@ const ListingForm = ({ listing, variant }: ListingFormProps) => {
       name: listing?.name ?? "",
       description: listing?.description ?? "",
       price: listing?.price ?? 0,
-      maxGuests: listing?.maxGuests ?? 1,
+      maxGuests: Number(listing?.maxGuests) ?? 1,
       wifi: listing?.meta.wifi ?? false,
       parking: listing?.meta.parking ?? false,
       breakfast: listing?.meta.breakfast ?? false,

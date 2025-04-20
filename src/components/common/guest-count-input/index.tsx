@@ -14,7 +14,7 @@ interface GuestCountInputProps
 
 const GuestCountInput = React.forwardRef<HTMLInputElement, GuestCountInputProps>(
   ({ maxGuests, value, onChange, borderStyle, ...props }, ref) => {
-    const maxValue = maxGuests ?? 100;
+    const maxValue = Number(maxGuests) ?? 100;
     const handleGuestIncrement = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
       const newValue = value === undefined ? 1 : Math.min(value + 1, maxValue);
