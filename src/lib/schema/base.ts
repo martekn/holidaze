@@ -85,14 +85,14 @@ export const baseUserRegistrationSchema = z.object({
 export type TBaseUserRegistration = z.infer<typeof baseUserRegistrationSchema>;
 
 export const requiredDateRangeSchema = z.custom<DateRange>(
-  (val) => {
+  (dateRange: unknown) => {
     return (
-      val &&
-      typeof val === "object" &&
-      "from" in val &&
-      "to" in val &&
-      val.from instanceof Date &&
-      val.to instanceof Date
+      dateRange &&
+      typeof dateRange === "object" &&
+      "from" in dateRange &&
+      "to" in dateRange &&
+      dateRange.from instanceof Date &&
+      dateRange.to instanceof Date
     );
   },
   {
