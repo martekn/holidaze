@@ -1,5 +1,5 @@
 import Banner from "@/components/common/banner";
-import HostedListingCard from "@/components/common/cards/listing/hosted-listing-card";
+import CardHostedListing from "@/components/common/card-hosted-listing";
 import Paginator from "@/components/common/paginator";
 import { Heading } from "@/components/ui/heading";
 import { Link } from "@/components/ui/link";
@@ -67,7 +67,7 @@ const HostedListingsPage = async ({ searchParams }: { searchParams: { page: stri
           <ul className="grid gap-16 xs:grid-cols-2 md:grid-cols-3 md:gap-24">
             {listings.map((listing) => (
               <li key={listing.id}>
-                <HostedListingCard listing={listing} />
+                <CardHostedListing listing={listing} />
               </li>
             ))}
           </ul>

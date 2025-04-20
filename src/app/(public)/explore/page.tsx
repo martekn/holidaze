@@ -2,7 +2,7 @@ import Paginator from "@/components/common/paginator";
 import Container from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import React from "react";
-import ListingCard from "@/components/common/cards/listing/listing-card";
+import CardListing from "@/components/common/card-listing";
 import { getListings, getListingsSearch } from "@/lib/api/listings";
 import { TListingWithBookings } from "@/lib/schema";
 import Banner from "@/components/common/banner";
@@ -77,7 +77,7 @@ const ExplorePage = async ({
         <ul className="grid gap-x-16 gap-y-32 xs:grid-cols-2 md:grid-cols-4">
           {listings.map((listing) => (
             <li key={listing.id}>
-              <ListingCard listing={listing} />
+              <CardListing listing={listing} />
             </li>
           ))}
         </ul>

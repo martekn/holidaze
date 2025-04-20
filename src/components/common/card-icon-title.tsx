@@ -10,7 +10,7 @@ type IconTitleCardProps = {
   className?: string;
   size?: "sm" | "lg";
 };
-const IconTitleCard = ({
+const CardIconTitle = ({
   title,
   icon: Icon,
   children,
@@ -29,4 +29,4 @@ const IconTitleCard = ({
   );
 };
 
-export default IconTitleCard;
+export default CardIconTitle;

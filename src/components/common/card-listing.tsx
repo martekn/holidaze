@@ -12,7 +12,7 @@ type ListingCardProps = {
   listing: TBaseListing;
 };
 
-const ListingCard = ({ listing, ...props }: ListingCardProps) => {
+const CardListing = ({ listing, ...props }: ListingCardProps) => {
   const { location, media, rating, id, name, price } = listing;
 
   const address = getFormattedAddress(location);
@@ -36,4 +36,4 @@ const ListingCard = ({ listing, ...props }: ListingCardProps) => {
   );
 };
 
-export default ListingCard;
+export default CardListing;

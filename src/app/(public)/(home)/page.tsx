@@ -6,8 +6,8 @@ import Section from "@/components/ui/section";
 import { Carousel } from "./components/carousel";
 import { Link } from "@/components/ui/link";
 import { IconArrowRight } from "@tabler/icons-react";
-import AmenityCard from "@/components/common/cards/amenity/amenity-card";
-import ListingCard from "@/components/common/cards/listing/listing-card";
+import AmenityCard from "@/components/common/amenity-card";
+import CardListing from "@/components/common/card-listing";
 import Banner from "@/components/common/banner";
 import { apiFetch } from "@/lib/utils/api";
 import { baseListingSchema, paginatedApiResponseSchema, TBaseListing } from "@/lib/schema";
@@ -161,7 +161,7 @@ const HomePage = async () => {
             <ul className="grid gap-x-16 gap-y-32 xs:grid-cols-2 md:grid-cols-4">
               {budgetFriendlyListings.map((listing) => (
                 <li key={listing.id}>
-                  <ListingCard listing={listing} />
+                  <CardListing listing={listing} />
                 </li>
               ))}
             </ul>

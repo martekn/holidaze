@@ -17,7 +17,7 @@ type BookingInfoCardProps = {
   className?: string;
 };
 
-const BookingInfoCard = ({
+const CardBookingInfo = ({
   booking,
   listing,
   customer,
@@ -102,4 +102,4 @@ const BookingInfoCard = ({
   );
 };
 
-export default BookingInfoCard;
+export default CardBookingInfo;

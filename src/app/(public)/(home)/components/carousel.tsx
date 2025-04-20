@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
-import ListingCard from "@/components/common/cards/listing/listing-card";
+import CardListing from "@/components/common/card-listing";
 import { TBaseListing } from "@/lib/schema";
 
 export function Carousel({ listings }: { listings: TBaseListing[] }) {
@@ -21,7 +21,7 @@ export function Carousel({ listings }: { listings: TBaseListing[] }) {
       <CarouselContent className="md:-ml-24">
         {listings.map((listing, index) => (
           <CarouselItem key={index} className="md:basis-1/2 md:pl-24 lg:basis-1/3">
-            <ListingCard listing={listing} />
+            <CardListing listing={listing} />
           </CarouselItem>
         ))}
       </CarouselContent>

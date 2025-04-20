@@ -9,7 +9,7 @@ type HostedListingCardProps = {
   listing: TBaseListing;
 };
 
-const HostedListingCard = ({ listing, ...props }: HostedListingCardProps) => {
+const CardHostedListing = ({ listing, ...props }: HostedListingCardProps) => {
   const { id, media, name, updated } = listing;
 
   const formattedDate = getFormattedDate(new Date(updated));
@@ -29,4 +29,4 @@ const HostedListingCard = ({ listing, ...props }: HostedListingCardProps) => {
   );
 };
 
-export default HostedListingCard;
+export default CardHostedListing;

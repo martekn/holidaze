@@ -1,5 +1,5 @@
 import Banner from "@/components/common/banner";
-import IconTitleCard from "@/components/common/cards/generic/icon-title-card";
+import CardIconTitle from "@/components/common/card-icon-title";
 import Container from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import { Link } from "@/components/ui/link";
@@ -45,22 +45,22 @@ const BecomeAHostPage = async () => {
         <Section variant={"lg"}>
           <ul className="grid items-stretch gap-24 md:grid-cols-3">
             <li>
-              <IconTitleCard className="h-full" title="Host listings" icon={IconHome}>
+              <CardIconTitle className="h-full" title="Host listings" icon={IconHome}>
                 <p>
                   {`Create and manage listings for your properties, whether it's a cozy apartment or
                   a luxurious villa.`}
                 </p>
-              </IconTitleCard>
+              </CardIconTitle>
             </li>
             <li>
-              <IconTitleCard className="h-full" title="Update anytime" icon={IconEdit}>
+              <CardIconTitle className="h-full" title="Update anytime" icon={IconEdit}>
                 <p>
                   {`Easily update your listings' details, availability, and pricing to keep your offerings current and competitive.`}
                 </p>
-              </IconTitleCard>
+              </CardIconTitle>
             </li>
             <li>
-              <IconTitleCard
+              <CardIconTitle
                 className="h-full"
                 title="Track performance"
                 icon={IconChartBarPopular}
@@ -68,7 +68,7 @@ const BecomeAHostPage = async () => {
                 <p>
                   {`Access detailed insights and analytics to see how your listings are performing and optimize your hosting strategy.`}
                 </p>
-              </IconTitleCard>
+              </CardIconTitle>
             </li>
           </ul>
         </Section>

@@ -1,6 +1,6 @@
 import Banner from "@/components/common/banner";
-import BookingInfoCard from "@/components/common/cards/booking/booked-info-card";
-import IconTitleCard from "@/components/common/cards/generic/icon-title-card";
+import CardBookingInfo from "@/components/common/card-booked-info";
+import CardIconTitle from "@/components/common/card-icon-title";
 import Container from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import { Link } from "@/components/ui/link";
@@ -114,19 +114,19 @@ const HostedListingDetailPage = async ({ params }: { params: { id: string } }) =
       </div>
       <ul className="grid gap-24 md:grid-cols-3">
         <li>
-          <IconTitleCard title="Total bookings" icon={IconCalendar} size="sm">
+          <CardIconTitle title="Total bookings" icon={IconCalendar} size="sm">
             <div className={headingStyles({ variant: "heading4" })}>{totalBookings}</div>
-          </IconTitleCard>
+          </CardIconTitle>
         </li>
         <li>
-          <IconTitleCard title="Total guests" icon={IconUsers} size="sm">
+          <CardIconTitle title="Total guests" icon={IconUsers} size="sm">
             <div className={headingStyles({ variant: "heading4" })}>{totalGuests}</div>
-          </IconTitleCard>
+          </CardIconTitle>
         </li>
         <li>
-          <IconTitleCard title="Total Revenue" icon={IconCurrencyDollar} size="sm">
+          <CardIconTitle title="Total Revenue" icon={IconCurrencyDollar} size="sm">
             <div className={headingStyles({ variant: "heading4" })}>${totalRevenue}</div>
-          </IconTitleCard>
+          </CardIconTitle>
         </li>
       </ul>
       <Section className="space-y-24">
@@ -143,7 +143,7 @@ const HostedListingDetailPage = async ({ params }: { params: { id: string } }) =
                 {bookings.map((booking) => {
                   return (
                     <li key={booking.id}>
-                      <BookingInfoCard
+                      <CardBookingInfo
                         booking={booking}
                         listing={listing}
                         customer={booking.customer}

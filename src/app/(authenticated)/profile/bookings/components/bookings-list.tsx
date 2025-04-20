@@ -3,7 +3,7 @@ import Paginator from "@/components/common/paginator";
 import { getUserData } from "@/lib/cookies/server";
 import { notFound, redirect } from "next/navigation";
 import React from "react";
-import BookingInfoCard from "@/components/common/cards/booking/booked-info-card";
+import CardBookingInfo from "@/components/common/card-booked-info";
 import { Link } from "@/components/ui/link";
 import { getBookingsByUser } from "@/lib/api/bookings";
 
@@ -43,7 +43,7 @@ const BookingsList = async ({ listingID }: { listingID: number }) => {
           <ul className="space-y-24">
             {bookings.map((booking) => (
               <li key={booking.id}>
-                <BookingInfoCard variant="guest-view" booking={booking} listing={booking.venue} />
+                <CardBookingInfo variant="guest-view" booking={booking} listing={booking.venue} />
               </li>
             ))}
           </ul>

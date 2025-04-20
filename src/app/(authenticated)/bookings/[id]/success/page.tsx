@@ -1,5 +1,5 @@
 import Banner from "@/components/common/banner";
-import BookingInfoCard from "@/components/common/cards/booking/booked-info-card";
+import CardBookingInfo from "@/components/common/card-booked-info";
 import Container from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import Section from "@/components/ui/section";
@@ -46,7 +46,7 @@ const BookingSuccessPage = async ({ params }: { params: { id: string } }) => {
           </p>
         </Section>
         <Section variant={"lg"}>
-          <BookingInfoCard booking={booking} listing={booking.venue} variant="guest-view" />
+          <CardBookingInfo booking={booking} listing={booking.venue} variant="guest-view" />
         </Section>
       </main>
     </Container>
