@@ -26,11 +26,11 @@ import { createListing, deleteListing, updateListing } from "@/lib/api/listings"
 import SortableMediaList from "./sortable-media-list";
 import { API_MAX_IMAGES } from "@/lib/constants";
 import { isValidUrl } from "@/lib/utils/is-valid-url";
-import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
 import { revalidatePage } from "./actions";
 import { toast } from "@/components/ui/sonner";
 import { Alert } from "@/components/ui/alert";
+import { nanoid } from "@/lib/utils/nanoid";
 
 const mediaSchema = z.object({ url: z.string().url(), alt: z.string(), id: z.string() });
 export type MediaData = z.infer<typeof mediaSchema>;
