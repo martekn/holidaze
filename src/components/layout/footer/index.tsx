@@ -3,15 +3,9 @@ import { Logo } from "@/components/ui/logo";
 import React from "react";
 import FooterList from "./footer-list";
 import Container from "@/components/ui/container";
+import { FOOTER_QUICK_LINKS } from "@/lib/constants";
 
 const Footer = () => {
-  const quickLinks = [
-    { text: "Explore stays", href: "/explore" },
-    { text: "Become a host", href: "/become-a-host" },
-    { text: "Create account", href: "/register" },
-    { text: "Log in", href: "/login" }
-  ];
-
   return (
     <footer className="bg-neutral-700 text-neutral-200">
       <Container className="flex flex-col gap-40 py-64 md:py-96 lg:flex-row lg:gap-128">
@@ -27,7 +21,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-shrink-0 flex-col gap-40 sm:flex-row sm:gap-128">
           <FooterList heading="Quick links" className="flex-shrink-0">
-            {quickLinks.map(({ text, href }, index) => (
+            {FOOTER_QUICK_LINKS.map(({ text, href }, index) => (
               <li key={index}>
                 <Link
                   variant={"linkInverted"}

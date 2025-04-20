@@ -1,4 +1,12 @@
-import { IconBook, IconHome, IconSettings } from "@tabler/icons-react";
+import {
+  IconBook,
+  IconHome,
+  IconParking,
+  IconPaw,
+  IconSettings,
+  IconSoup,
+  IconWifi
+} from "@tabler/icons-react";
 
 export const API_BASE_URL = "https://v2.api.noroff.dev";
 
@@ -14,3 +22,29 @@ export const API_AVATAR_PLACEHOLDER =
 export const LISTING_NAME_PLACEHOLDER = "Untitled stay";
 
 export const API_MAX_IMAGES = 10;
+
+export const FOOTER_QUICK_LINKS = [
+  { text: "Explore stays", href: "/explore" },
+  { text: "Become a host", href: "/become-a-host" },
+  { text: "Create account", href: "/register" },
+  { text: "Log in", href: "/login" }
+];
+
+export const AMENITIES = {
+  parking: {
+    icon: IconParking,
+    title: "Parking"
+  },
+  breakfast: {
+    icon: IconSoup,
+    title: "Breakfast"
+  },
+  wifi: {
+    icon: IconWifi,
+    title: "Wi-Fi"
+  },
+  pets: {
+    icon: IconPaw,
+    title: "Pet friendly"
+  }
+};

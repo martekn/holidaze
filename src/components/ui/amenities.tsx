@@ -1,29 +1,10 @@
 "use client";
 
+import { AMENITIES } from "@/lib/constants";
 import { TAmenity, TBaseListing } from "@/lib/schema";
 import { cn } from "@/lib/utils/shadcn-utils";
-import { IconParking, IconPaw, IconSoup, IconWifi } from "@tabler/icons-react";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { useEffect, useState } from "react";
-
-const AMENITIES = {
-  parking: {
-    icon: IconParking,
-    title: "Parking"
-  },
-  breakfast: {
-    icon: IconSoup,
-    title: "Breakfast"
-  },
-  wifi: {
-    icon: IconWifi,
-    title: "Wi-Fi"
-  },
-  pets: {
-    icon: IconPaw,
-    title: "Pet friendly"
-  }
-};
 
 type AmenityKey = keyof typeof AMENITIES;
 
