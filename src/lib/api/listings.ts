@@ -102,7 +102,7 @@ const apiListingDataSchema = baseApiResponseSchema.extend({
   data: baseListingSchema
 });
 export const createListing = async (data: baseListingData) => {
-  const rating = Math.random() * (5 + Number.EPSILON);
+  const rating = 0;
   try {
     const response = await apiFetch("/holidaze/venues/", {
       data: { ...data, rating },

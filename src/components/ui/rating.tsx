@@ -4,7 +4,7 @@ import React from "react";
 
 const ratings = [
   { text: "Not rated", range: [0, 0.9] },
-  { text: "Poor", range: [1, 1 - 9] },
+  { text: "Poor", range: [1, 1.9] },
   { text: "Fair", range: [2, 2.9] },
   { text: "Good", range: [3, 3.9] },
   { text: "Very good", range: [4, 4.6] },
@@ -44,11 +44,12 @@ const Rating = ({
   ratingClassName,
   className
 }: RatingProps) => {
+  const parsedRating = parseFloat(rating.toFixed(1));
   const currentRating = ratings.find((item) => {
     const min = item.range[0];
     const max = item.range[1];
 
-    if (min <= rating && max >= rating) {
+    if (min <= parsedRating && max >= parsedRating) {
       return true;
     }
 
@@ -57,7 +58,7 @@ const Rating = ({
 
   return (
     <div className={cn(ratingStyles({ variant, textPosition }), className)}>
-      <div className={cn("rounded-md bg-accent-400 px-8", ratingClassName)}>{rating}</div>
+      <div className={cn("rounded-md bg-accent-400 px-8", ratingClassName)}>{parsedRating}</div>
       {variant !== "ratingOnly" && (
         <div className={cn(textClassName)}>{currentRating?.text ?? ""}</div>
       )}
