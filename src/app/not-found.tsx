@@ -24,7 +24,7 @@ const NotFound = () => {
               </Heading>
               <p className="max-w-prose leading-7">
                 We couldn’t find the page you’re looking for. It might have been moved, deleted, or
-                is taking a little vacation of its own. But don’t worry—we’ve got plenty of amazing
+                is taking a little vacation of its own. But don’t worry, we’ve got plenty of amazing
                 stays waiting for you!
               </p>
             </div>
