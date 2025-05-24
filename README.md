@@ -1,4 +1,5 @@
 # Holidaze
+![Screenshot 2025-05-24 at 17-36-22 Holidaze Discover Unique Accommodations](https://github.com/user-attachments/assets/6dfa3adf-7b60-4cce-89d5-b6f4432a73f9)
 
 Holidaze is an accommodation booking platform I developed as part of my Project Exam 2. The site features both customer-facing booking functionality and venue management capabilities for registered users, built according to the Noroff API specifications.
 
